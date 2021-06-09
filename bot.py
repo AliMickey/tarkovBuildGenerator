@@ -92,13 +92,9 @@ async def stat(ctx, * message):
 
 
                 elif message[0] == "5.7x28" or "5.7x28mm" or "5.7": 
-                        embed = discord.Embed(
-                                title='5.7x28mm FN',
-                                description=embedDesc,
-                                colour=discord.Colour.blue())
-                        embed.set_image(url="https://i.ibb.co/C9cm3xT/5-7x28.png")
-                        embed.set_footer(text=embedFooter)
-                        await ctx.send(embed=embed)
+                        embedTitle ='5.7x28mm FN'
+                        embedUrl = "https://i.ibb.co/C9cm3xT/5-7x28.png"
+                     
 
                 elif message[0] == "5.45" or "545" or "5.45x39" or "5.45x39mm": 
                         embed = discord.Embed(
