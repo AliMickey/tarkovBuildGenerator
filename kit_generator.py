@@ -1,20 +1,30 @@
 import random
-def generate_weapon():
+
+def generate_weapon(db):
     weapon = []
     return weapon
 
-def generate_head():
+def generate_head(db):
     head = []
     return head
+
+def generate_armour(db):
+    armour = []
+    return armour
+
+def generate_ammo_type(db):
+    ammoType = []
+    return ammoType
+
+def generate_tac_rig(db):
+    tacRig = []
+    return tacRig
 
 def generate_grenades():
     grenades = ["None", "F-1 Hand", "RGD-5 Hand", "VOG-17 Khattabka", "VOG-25 Khattabka", "M67 Hand", "RDG-2B Smoke",
                 "Zarya Stun"]
     return random.choice(grenades)
 
-def generate_armour():
-    armour = []
-    return armour
 
 def generate_backpack(): #Fix capitals
     backpacks =  ["6SH118 Raid Backpack", "LBT-2670 Slim Field Med Pack", "Mystery Ranch Blackjack 50 backpack (multicam)",
