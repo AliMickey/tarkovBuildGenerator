@@ -90,16 +90,13 @@ async def stat(ctx, * message):
                         embedTitle = 'HK 4.6x30mm'
                         embedUrl = "https://i.ibb.co/Pr7Jffw/4-6x30.png"
 
-
                 elif message[0] == "5.7x28" or "5.7x28mm" or "5.7": 
                         embedTitle = '5.7x28mm FN'
                         embedUrl = "https://i.ibb.co/C9cm3xT/5-7x28.png"
-                     
 
                 elif message[0] == "5.45" or "545" or "5.45x39" or "5.45x39mm": 
                         embedTitle = '5.45x39mm'
                         embedUrl = "https://i.ibb.co/whVHPZS/5-45x39.png"
-                        
                         
                 elif message[0] == "5.56" or "556" or "5.56x45" or "5.56x45mm":
                         embedTitle = '5.56x45mm NATO'
