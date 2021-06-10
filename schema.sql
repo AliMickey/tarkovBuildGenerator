@@ -7,101 +7,201 @@ DROP TABLE IF EXISTS bolts;
 DROP TABLE IF EXISTS pistol_grips;
 DROP TABLE IF EXISTS hand_guards;
 DROP TABLE IF EXISTS buffer_tubes;
+DROP TABLE IF EXISTS mounts;
+DROP TABLE IF EXISTS fore_grips;
+DROP TABLE IF EXISTS tacticals;
+DROP TABLE IF EXISTS muzzles;
+DROP TABLE IF EXISTS ammo_types;
+DROP TABLE IF EXISTS stock_compatibility;
+DROP TABLE IF EXISTS sight_compatibility;
+DROP TABLE IF EXISTS magazine_compatibility;
+DROP TABLE IF EXISTS barrel_compatibility;
+DROP TABLE IF EXISTS bolt_compatibility;
+DROP TABLE IF EXISTS pistol_grip_compatibility;
+DROP TABLE IF EXISTS hand_guard_compatibility;
+DROP TABLE IF EXISTS buffer_tube_compatibility;
+DROP TABLE IF EXISTS mount_compatibility;
+DROP TABLE IF EXISTS fore_grip_compatibility;
+DROP TABLE IF EXISTS tactical_compatibility;
+DROP TABLE IF EXISTS muzzle_compatibility;
+DROP TABLE IF EXISTS ammo_type_compatibility;
+
 
 -- Guns
 CREATE TABLE guns (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  gun_name TEXT NOT NULL,
-  compatible_stock_id INTEGER,
-  compatible_sight_id INTEGER,
-  compatible_magazine_id INTEGER,
-  compatible_barrel_id INTEGER,
-  compatible_bolt_id INTEGER,
-  compatible_pistol_grips_id INTEGER,
-  compatible_hand_guard_id INTEGER,
-  compatible_buffer_tube_id INTEGER,
-
-  FOREIGN KEY (compatible_stock_id) REFERENCES stocks (id),
-  FOREIGN KEY (compatible_sight_id) REFERENCES sights (id),
-  FOREIGN KEY (compatible_magazine_id) REFERENCES magazines (id),
-  FOREIGN KEY (compatible_barrel_id) REFERENCES barrels (id),
-  FOREIGN KEY (compatible_bolt_id) REFERENCES bolts (id),
-  FOREIGN KEY (compatible_pistol_grips_id) REFERENCES pistol_grips (id),
-  FOREIGN KEY (compatible_hand_guard_id) REFERENCES hand_guards (id),
-  FOREIGN KEY (compatible_buffer_tube_id) REFERENCES buffer_tubes (id)
+  gun_name TEXT NOT NULL
 );
 
 -- Stocks
 CREATE TABLE stocks (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  stock_name TEXT NOT NULL,
-  buffer_tube_required BOOLEAN NOT NULL
+  stock_name TEXT UNIQUE NOT NULL,
+  buffer_tube_required BOOLEAN, --NOT NULL,
+  pistol_grip_required BOOLEAN --NOT NULL
 );
 
 -- Sights
 CREATE TABLE sights (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  sight_name TEXT NOT NULL
+  sight_name TEXT UNIQUE NOT NULL
 );
 
 -- Magazines
 CREATE TABLE magazines (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  magazine_name TEXT NOT NULL
+  magazine_name TEXT UNIQUE NOT NULL
 );
 
 -- Barrels
 CREATE TABLE barrels (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  barrel_name TEXT NOT NULL
+  barrel_name TEXT UNIQUE NOT NULL
 );
 
 -- Bolts
 CREATE TABLE bolts (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  bolt_name TEXT NOT NULL
+  bolt_name TEXT UNIQUE NOT NULL
 );
 
 -- Pistol Grips
 CREATE TABLE pistol_grips (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  pistol_grip_name TEXT NOT NULL
+  pistol_grip_name TEXT UNIQUE NOT NULL
 );
 
 -- Hand Guards
 CREATE TABLE hand_guards (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  hand_guard_name TEXT NOT NULL
+  hand_guard_name TEXT UNIQUE NOT NULL
 );
 
 -- Buffer Tubes
 CREATE TABLE buffer_tubes (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  buffer_tube_name TEXT NOT NULL
+  buffer_tube_name TEXT UNIQUE NOT NULL
 );
 
 -- Mounts
 CREATE TABLE mounts (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  mount_name TEXT NOT NULL
+  mount_name TEXT UNIQUE NOT NULL
 );
 
 -- Fore Grips
 CREATE TABLE fore_grips (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  fore_grip_name TEXT NOT NULL
+  fore_grip_name TEXT UNIQUE NOT NULL
 );
 
 -- Tacticals
 CREATE TABLE tacticals (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  tactical_name TEXT NOT NULL
+  tactical_name TEXT UNIQUE NOT NULL
 );
 
 -- Muzzles
 CREATE TABLE muzzles (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  muzzle_name TEXT NOT NULL
+  muzzle_name TEXT UNIQUE NOT NULL
+);
+
+-- Ammo Types
+CREATE TABLE ammo_types (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  ammo_name TEXT UNIQUE NOT NULL
+);
+
+--Gun -> Stocks
+CREATE TABLE stock_compatibility (
+  gun_id INTEGER REFERENCES guns (id),
+  stock_id INTEGER REFERENCES stocks (id),
+  PRIMARY KEY (gun_id, stock_id)
+);
+
+--Gun -> Sights
+CREATE TABLE sight_compatibility (
+  gun_id INTEGER REFERENCES guns (id),
+  sight_id INTEGER REFERENCES sights (id),
+  PRIMARY KEY (gun_id, sight_id)
+);
+
+--Gun -> Magazines
+CREATE TABLE magazine_compatibility (
+  gun_id INTEGER REFERENCES guns (id),
+  magazine_id INTEGER REFERENCES maagzines (id),
+  PRIMARY KEY (gun_id, magazine_id)
+);
+
+--Gun -> Barrels
+CREATE TABLE barrel_compatibility (
+  gun_id INTEGER REFERENCES guns (id),
+  barrel_id INTEGER REFERENCES barrels (id),
+  PRIMARY KEY (gun_id, barrel_id)
+);
+
+--Gun -> Bolts
+CREATE TABLE bolt_compatibility (
+  gun_id INTEGER REFERENCES guns (id),
+  bolt_id INTEGER REFERENCES bolts (id),
+  PRIMARY KEY (gun_id, bolt_id)
+);
+
+--Gun -> Pistol Grips
+CREATE TABLE pistol_grip_compatibility (
+  gun_id INTEGER REFERENCES guns (id),
+  pistol_grip_id INTEGER REFERENCES pistol_grips (id),
+  PRIMARY KEY (gun_id, pistol_grip_id)
+);
+
+--Gun -> Hand Guards
+CREATE TABLE hand_guard_compatibility (
+  gun_id INTEGER REFERENCES guns (id),
+  hand_guard_id INTEGER REFERENCES hand_guards (id),
+  PRIMARY KEY (gun_id, hand_guard_id)
+);
+
+--Stock -> Buffer Tubes
+CREATE TABLE buffer_tube_compatibility (
+  stock_id INTEGER REFERENCES stocks (id),
+  buffer_tube_id INTEGER REFERENCES buffer_tubes (id),
+  PRIMARY KEY (stock_id, buffer_tube_id)
+);
+
+--Gun -> Mounts
+CREATE TABLE mount_compatibility (
+  gun_id INTEGER REFERENCES guns (id),
+  mount_id INTEGER REFERENCES mounts (id),
+  PRIMARY KEY (gun_id, mount_id)
+);
+
+--Gun -> Fore Grips
+CREATE TABLE fore_grip_compatibility (
+  gun_id INTEGER REFERENCES guns (id),
+  fore_grip_id INTEGER REFERENCES fore_grips (id),
+  PRIMARY KEY (gun_id, fore_grip_id)
+);
+
+--Gun -> Tacticals
+CREATE TABLE tactical_compatibility (
+  gun_id INTEGER REFERENCES guns (id),
+  tactical_id INTEGER REFERENCES tacticals (id),
+  PRIMARY KEY (gun_id, tactical_id)
+);
+
+--Gun -> Muzzles
+CREATE TABLE muzzle_compatibility (
+  gun_id INTEGER REFERENCES guns (id),
+  muzzle_id INTEGER REFERENCES muzzles (id),
+  PRIMARY KEY (gun_id, muzzle_id)
+);
+
+--Gun -> Ammo Types
+CREATE TABLE ammo_type_compatibility (
+  gun_id INTEGER REFERENCES guns (id),
+  ammo_id INTEGER REFERENCES ammo_types (id),
+  PRIMARY KEY (gun_id, ammo_id)
 );
 
 
@@ -121,46 +221,54 @@ VALUES ('ADAR 2-15 .223 Carbine'), ('AK-101 5.56x45 assault rifle'), ('AK-102 AK
        ('HK MP5 Kurz 9x19 submachinegun'), ('HK MP7A1 4.6x30 submachinegun'), ('HK MP7A2 4.6x30 submachinegun'), ('B&T MP9 9x19 submachinegun'), 
        ('B&T MP9-N 9x19 Submachinegun'), ('SIG MPX 9x19 Submachine gun'), ('FN P90 5.7x28 submachinegun'), ('Submachinegun 19-01 Vityaz-SN 9x19'), 
        ('PP-9 Klin 9x18PMM SMG'), ('PP-91 Kedr 9x18PM SMG'), ('Submachinegun PPSH-41 7.62x25'), ('Saiga-9 9x19 Carbine'), ('STM-9 Gen.2 9x19 carbine'), 
-       ('HK UMP 45 submachinegun')('TDI KRISS Vector Gen.2 .45 ACP submachinegun'), ('TDI Kriss Vector Gen.2 9x19 submachinegun'), 
-       ('Mossberg 590A1 12ga shotgun'), ('Remington Model 870 12ga shotgun'), ('MP-133 12ga shotgun'), ('MP-153 12ga semi-automatic shotgun'), 
-       ('Saiga 12ga ver.10 12x76 assault rifle'), ('TOZ-106 bolt-action shotgun'), ('TOZ KS-23M 23x75mm shotgun'), ('Lone Star TX-15 DML Rifle'), 
-       ('Springfield Armory M1A 7.62x51'), ('Mk-18 .338 LM marksman rifle'), ('Remington R11 RSASS 7.62x51'), ("Knight's Armament Company SR-25 7.62x51"), 
-       ('SVDS 7.62x54 Sniper rifle'), ('Special Sniper Rifle VSS Vintorez'), ('DVL-10 Saboteur sniper rifle'), ('Remington Model 700 Sniper rifle'), 
-       ('Mosin bolt-action sniper rifle'), ('Mosin bolt-action infantry rifle'), ('SV-98 bolt-action sniper rifle'), ('Orsis T-5000 .308 sniper rifle'), 
-       ('Molot VPO-215 .366 TKM rifle'), ('FN GL40 Mk.2 grenade launcher'), ('Stechkin Automatic Pistol 9x18PM'), ('Silenced Stechkin Automatic Pistol 9x18PM'), 
-       ('FN Five-seveN MK2 5.7x28 pistol'), ('FN Five-seveN MK2 FDE Frame 5.7x28 pistol'), ('GLOCK 17 9x19 pistol'), ('GLOCK 18C 9x19 pistol'), 
-       ('Colt M1911A1 .45 ACP pistol'), ('Colt M45A1 .45 ACP pistol'), ('Beretta M9A3 9x19 pistol'), ('Yarygin MP-443 Grach 9x19 pistol'), 
-       ('P226R 9x19 pistol'), ('PB 9x18PM silenced pistol'), ('PL-15 9x19 pistol'), ('PM (t) 9x18PM pistol'), ('PM 9x18PM pistol'), 
-       ('9x21 Serdyukov automatic pistol SR1MP Gyurza'), ('TT pistol 7.62x25 TT'), ('TT pistol 7.62x25 TT (gold)');
+       ('HK UMP 45 submachinegun');
+
+VALUES ('TDI KRISS Vector Gen.2 .45 ACP submachinegun'), ('TDI Kriss Vector Gen.2 9x19 submachinegun'), ('Mossberg 590A1 12ga shotgun'), 
+       ('Remington Model 870 12ga shotgun'), ('MP-133 12ga shotgun'), ('MP-153 12ga semi-automatic shotgun'), ('Saiga 12ga ver.10 12x76 assault rifle'), 
+       ('TOZ-106 bolt-action shotgun'), ('TOZ KS-23M 23x75mm shotgun'), ('Lone Star TX-15 DML Rifle'), ('Springfield Armory M1A 7.62x51'), 
+       ('Mk-18 .338 LM marksman rifle'), ('Remington R11 RSASS 7.62x51'), ("Knight's Armament Company SR-25 7.62x51"), ('SVDS 7.62x54 Sniper rifle'), 
+       ('Special Sniper Rifle VSS Vintorez'), ('DVL-10 Saboteur sniper rifle'), ('Remington Model 700 Sniper rifle'), ('Mosin bolt-action sniper rifle'), 
+       ('Mosin bolt-action infantry rifle'), ('SV-98 bolt-action sniper rifle'), ('Orsis T-5000 .308 sniper rifle'), ('Molot VPO-215 .366 TKM rifle'), 
+       ('FN GL40 Mk.2 grenade launcher'), ('Stechkin Automatic Pistol 9x18PM'), ('Silenced Stechkin Automatic Pistol 9x18PM'), ('FN Five-seveN MK2 5.7x28 pistol'), 
+       ('FN Five-seveN MK2 FDE Frame 5.7x28 pistol'), ('GLOCK 17 9x19 pistol'), ('GLOCK 18C 9x19 pistol'), ('Colt M1911A1 .45 ACP pistol'), ('Colt M45A1 .45 ACP pistol'), 
+       ('Beretta M9A3 9x19 pistol'), ('Yarygin MP-443 Grach 9x19 pistol'), ('P226R 9x19 pistol'), ('PB 9x18PM silenced pistol'), ('PL-15 9x19 pistol'), 
+       ('PM (t) 9x18PM pistol'), ('PM 9x18PM pistol'), ('9x21 Serdyukov automatic pistol SR1MP Gyurza'), ('TT pistol 7.62x25 TT'), ('TT pistol 7.62x25 TT (gold)');
+
+
 
 -- Stocks
-INSERT INTO stocks (stock_name)
-VALUES ('ADAR 2-15 wooden stock'), ('APB detachable wire stock'), ('Armacon Baskak stock'), ('AT AICS polymer stock for M700'), 
-       ('ATI Monte Carlo Mosin rifle stock'), ('B5 Precision stock'), ('Custom cut mosin stock for TOZ-106'), ('Double Star Ace Socom gen.4 stock for AR-15'), 
-       ('DSA BRS stock for SA-58'), ('DSA Folding stock for SA-58'), ('DSA SPR stock for SA-58'), ('Early produced SIG collapsing/telescoping MCX/MPX stock'), 
-       ('EMOD Stock'), ('F93 Pro Stock'), ('Fab Defence GL Core Stock'), ('Fab Defence GL Shock Stock'), ('Fab Defence GLR-16-S Stock'), 
-       ('Fab Defence GLR-17 Stock for Glock and compatible'), ('Fab Defence UAS Stock for SKS'), ('Fab Defense UAS for AK'), ('FN P90 stock'), ('FN PS90 stock'), 
-       ('Hexagon "Kocherga" stock red'), ('High Standard M4SS Stock'), ('HK A2 Stock'), ('HK A3 old stock model'), ('HK E1 Stock for AR-15 and compatible'), 
-       ('HK End Cap Stock for MP5'), ('HK End Cap Stock for MP5 Kurz'), ('HK Slim Line Stock'), ('Hogue "Overmolded ghillie" stock for Remington Model 700'), 
-       ('Infantry Mosin rifle stock'), ('Izhmash AK-12 regular stock'), ('IzhMash metal stock for AKS-74 (6P21 Sb.5)'), ('Izhmash metal stock for AKS-74U (6P26 Sb.5)'), 
-       ('Izhmash polymer AK-74 stock (6P20 Sb.7)'), ('Izhmash shoulder piece for AKMS (6P4 Sb.1-19)'), ('Izhmash shoulder piece for AKMSN (6P4 Sb.1-19)'), 
-       ('Izhmash SOK-12 AK type stock'), ('Izhmash wooden AK-74 stock (6P20 Sb.5)'), ('Izhmash wooden AKM stock (6P1 Sb.5)'), ('KRISS Defiance DS150 stock'), 
-       ('KRISSVector Gen.2 folding stock'), ('LMT Sopmod stock'), ('LOBAEV Arms Stock'), ('M14 M14ALCS(MOD. 0) stock (buttstock)'), ('M1A Archangel stock'), 
-       ('M1A Socom 16 stock'), ('M700 MOD X Gen.3 stock'), ('Magpul CTR Carbine stock'), ('Magpul PRO 700 chassis'), ('Magpul PRS 2 polymer stock for FAL'), 
-       ('Magpul PRS GEN2 FDE stock'), ('Magpul PRS GEN3 stock'), ('Magpul Rubber Butt-Pad for Carbine stock series'), 
-       ('Maxim Defence CQB collapsing/telescoping MCX/MPX stock'), ('MC 20-01 stock'), ('Metal Izhmash stock for PP-19-01'), ('MFT BUS Stock'), ('MOE Carbine stock'), 
-       ('Molot wooden VPO-136 stock'), ('Molot wooden VPO-209 stock'), ('Mosin carbine stock'), ('Mosin rifle sniper carbine stock'), 
-       ('Orsis T-5000M Stock'), ('Plastic pistol grip for MP-133/153'), ('Plastic stock for MP-133/153'), ('PMM "ULSS" foldable MCX/MPX stock'), 
-       ('Polymer stock DSA humpback for SA-58'), ('Polymer stock for AK-74M (6P34 Sb.15)'), ('Polymer stock for M590A1'), ('Polymer stock for SVDS'), 
-       ('Polymer stock for UMP'), ('PPSH-41 stock'), ('PRO 700 folding stock'), ('ProMag Archangel OPFOR PRS Mosin rifle stock'), 
-       ('Promag Archangel polymer stock for M700'), ('Raptor grip for M870'), ('Regular Mosin rifle stock'), ('Regular stock for B&T MP9'), 
-       ('Regular stock for HK MP7A1'), ('Regular stock for HK MP7A2'), ('Regular VPO-101 "Vepr Hunter" stock'), ('Regular VPO-215 stock'), 
-       ('Remington SPS Polymer stock for M870'), ('Sawn off Mosin rifle sniper stock'), ('Sawn off regular Mosin rifle stock'), ('SGA stock for M590'), 
-       ('SGA stock for M870'), ('SI Viper Mod.1 Stock'), ('SIG Sauer telescoping MCX/MPX stock'), ('SIG Sauer Thin lightweight MCX/MPX stock'), 
-       ('Tapco INTRAFUSE Stock for SKS'), ('TOZ stock for TOZ-106'), ('Troy M7A1 PDW stock'), ('Troy S.A.S.S. Chassis stock for M14'), ('TSNIITochMash AS VAL stock'), 
-       ('TSNIITochMash VSS Vintorez stock'), ('UBR GEN2 stock'), ('VPO-101 SVD style stock'), ('Wired stock for KS-23M'), ('Wooden stock 56-A-231 Sb.5'), 
-       ('Wooden stock for KS-23'), ('Wooden stock for Molot OP-SKS'), ('Wooden stock for MP-133/153'), ('Zenit PT-1 "Klassika" stock'), 
-       ('Zenit PT-3 "Klassika" stock'), ('Zhukov-S for AK');
+INSERT INTO stocks (stock_name, buffer_tube_required, pistol_grip_required)
+VALUES ('ADAR 2-15 wooden stock', false, false), ('APB detachable wire stock', false, true), ('Armacon Baskak stock', true, true);
+
+
+-- INSERT INTO stocks (stock_name, buffer_tube_required, pistol_grip_required)
+-- VALUES ('ADAR 2-15 wooden stock', false, false), ('APB detachable wire stock', false, true), ('Armacon Baskak stock'), ('AT AICS polymer stock for M700'), 
+--        ('ATI Monte Carlo Mosin rifle stock'), ('B5 Precision stock'), ('Custom cut mosin stock for TOZ-106'), ('Double Star Ace Socom gen.4 stock for AR-15'), 
+--        ('DSA BRS stock for SA-58'), ('DSA Folding stock for SA-58'), ('DSA SPR stock for SA-58'), ('Early produced SIG collapsing/telescoping MCX/MPX stock'), 
+--        ('EMOD Stock'), ('F93 Pro Stock'), ('Fab Defence GL Core Stock'), ('Fab Defence GL Shock Stock'), ('Fab Defence GLR-16-S Stock'), 
+--        ('Fab Defence GLR-17 Stock for Glock and compatible'), ('Fab Defence UAS Stock for SKS'), ('Fab Defense UAS for AK'), ('FN P90 stock'), ('FN PS90 stock'), 
+--        ('Hexagon "Kocherga" stock red'), ('High Standard M4SS Stock'), ('HK A2 Stock'), ('HK A3 old stock model'), ('HK E1 Stock for AR-15 and compatible'), 
+--        ('HK End Cap Stock for MP5'), ('HK End Cap Stock for MP5 Kurz'), ('HK Slim Line Stock'), ('Hogue "Overmolded ghillie" stock for Remington Model 700'), 
+--        ('Infantry Mosin rifle stock'), ('Izhmash AK-12 regular stock'), ('IzhMash metal stock for AKS-74 (6P21 Sb.5)'), ('Izhmash metal stock for AKS-74U (6P26 Sb.5)'), 
+--        ('Izhmash polymer AK-74 stock (6P20 Sb.7)'), ('Izhmash shoulder piece for AKMS (6P4 Sb.1-19)'), ('Izhmash shoulder piece for AKMSN (6P4 Sb.1-19)'), 
+--        ('Izhmash SOK-12 AK type stock'), ('Izhmash wooden AK-74 stock (6P20 Sb.5)'), ('Izhmash wooden AKM stock (6P1 Sb.5)'), ('KRISS Defiance DS150 stock'), 
+--        ('KRISSVector Gen.2 folding stock'), ('LMT Sopmod stock'), ('LOBAEV Arms Stock'), ('M14 M14ALCS(MOD. 0) stock (buttstock)'), ('M1A Archangel stock'), 
+--        ('M1A Socom 16 stock'), ('M700 MOD X Gen.3 stock'), ('Magpul CTR Carbine stock'), ('Magpul PRO 700 chassis'), ('Magpul PRS 2 polymer stock for FAL'), 
+--        ('Magpul PRS GEN2 FDE stock'), ('Magpul PRS GEN3 stock'), ('Magpul Rubber Butt-Pad for Carbine stock series');
+       
+-- VALUES ('Maxim Defence CQB collapsing/telescoping MCX/MPX stock'), ('MC 20-01 stock'), ('Metal Izhmash stock for PP-19-01'), ('MFT BUS Stock'), ('MOE Carbine stock'), 
+--        ('Molot wooden VPO-136 stock'), ('Molot wooden VPO-209 stock'), ('Mosin carbine stock'), ('Mosin rifle sniper carbine stock'), 
+--        ('Orsis T-5000M Stock'), ('Plastic pistol grip for MP-133/153'), ('Plastic stock for MP-133/153'), ('PMM "ULSS" foldable MCX/MPX stock'), 
+--        ('Polymer stock DSA humpback for SA-58'), ('Polymer stock for AK-74M (6P34 Sb.15)'), ('Polymer stock for M590A1'), ('Polymer stock for SVDS'), 
+--        ('Polymer stock for UMP'), ('PPSH-41 stock'), ('PRO 700 folding stock'), ('ProMag Archangel OPFOR PRS Mosin rifle stock'), 
+--        ('Promag Archangel polymer stock for M700'), ('Raptor grip for M870'), ('Regular Mosin rifle stock'), ('Regular stock for B&T MP9'), 
+--        ('Regular stock for HK MP7A1'), ('Regular stock for HK MP7A2'), ('Regular VPO-101 "Vepr Hunter" stock'), ('Regular VPO-215 stock'), 
+--        ('Remington SPS Polymer stock for M870'), ('Sawn off Mosin rifle sniper stock'), ('Sawn off regular Mosin rifle stock'), ('SGA stock for M590'), 
+--        ('SGA stock for M870'), ('SI Viper Mod.1 Stock'), ('SIG Sauer telescoping MCX/MPX stock'), ('SIG Sauer Thin lightweight MCX/MPX stock'), 
+--        ('Tapco INTRAFUSE Stock for SKS'), ('TOZ stock for TOZ-106'), ('Troy M7A1 PDW stock'), ('Troy S.A.S.S. Chassis stock for M14'), ('TSNIITochMash AS VAL stock'), 
+--        ('TSNIITochMash VSS Vintorez stock'), ('UBR GEN2 stock'), ('VPO-101 SVD style stock'), ('Wired stock for KS-23M'), ('Wooden stock 56-A-231 Sb.5'), 
+--        ('Wooden stock for KS-23'), ('Wooden stock for Molot OP-SKS'), ('Wooden stock for MP-133/153'), ('Zenit PT-1 "Klassika" stock'), 
+--        ('Zenit PT-3 "Klassika" stock'), ('Zhukov-S for AK');
 
 -- Sights
 INSERT INTO sights (sight_name)
@@ -187,25 +295,23 @@ INSERT INTO hand_guards (hand_guard_name)
 VALUES ('1');
 
 -- Mounts
-INSERT INTO mounts (buffer_tube_name)
+INSERT INTO mounts (mount_name)
 VALUES ('1');
 
 -- Fore Grips
-INSERT INTO fore_grips (buffer_tube_name)
+INSERT INTO fore_grips (fore_grip_name)
 VALUES ('1');
 
 -- Tacticals
-INSERT INTO tacticals (buffer_tube_name)
+INSERT INTO tacticals (tactical_name)
 VALUES ('1');
 
 -- Muzzles
-INSERT INTO muzzles (buffer_tube_name)
+INSERT INTO muzzles (muzzle_name)
 VALUES ('1');
 
 
-
-
-
-
--- Foreign Key Linking
---UPDATE guns (compatible_stock_id)
+--Stock Compatibility
+INSERT INTO stock_compatibility (gun_id, stock_id)
+-- ADAR 2-15 .223 Carbine
+VALUES (1, 2);

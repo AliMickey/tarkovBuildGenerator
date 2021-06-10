@@ -15,10 +15,9 @@ client = commands.Bot(command_prefix='!')
 async def kit(ctx):
         await ctx.send("Game Options:")
         db = database.get_db()
-        weapon = ["AK", "Fab Defence", "Red Dot", "60 Round", "Gral", "Charging Handle", '10.6" Barrel']
+        weapon = kg.generate_weapon(db)
         head = kg.generate_head(db)
         armour = kg.generate_armour(db)
-        ammoType = kg.generate_ammo_type(db)
         tacRig = kg.generate_tac_rig(db)
         grenade = kg.generate_grenades()
         backpack = kg.generate_backpack()
@@ -42,7 +41,7 @@ async def kit(ctx):
         weaponEmbed.add_field(name='\u200b', value=f'**Barrel: **`{weapon[6]}`', inline=True)
         weaponEmbed.add_field(name='\u200b', value="\u200b", inline=True)
 
-        weaponEmbed.add_field(name='\u200b', value=f'**Ammo Type: **`{ammoType}`', inline=True)
+        weaponEmbed.add_field(name='\u200b', value=f'**Ammo Type: **`{weapon[7]}`', inline=True)
 
 
         otherEmbed = discord.Embed(title = "Gear", colour = 15158332)

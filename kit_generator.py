@@ -2,7 +2,98 @@ import random
 
 def generate_weapon(db):
     weapon = []
+    # gun = random.choice(db.execute('''
+    #                     SELECT id, gun_name
+    #                     FROM guns
+    #                     ''').fetchall())
+    gun = [1, "AK-TEST"]
+    weapon.append(gun[1])
+
+    stockList = (db.execute('''
+                SELECT s.stock_name, buffer_tube_required, pistol_grip_required
+                FROM stocks s JOIN stock_compatibility sc ON sc.stock_id = s.id 
+                JOIN guns g ON sc.gun_id = g.id
+                WHERE sc.gun_id = ?
+                ''', [gun[0]]).fetchall())
+
+    if stockList:
+        stock = random.choice(stockList)
+        stockName = stock[0]
+        if (stock[1] == True):
+            stockName += " | Buffer Tube: Temp"
+        if (stock[2] == True):
+            stockName += " | Pistol Grip: Temp"
+        weapon.append(stockName)
+    else:
+        weapon.append("No Compatible Stock")
+
+
+    sightList = db.execute('''
+                SELECT s.sight_name
+                FROM sights s JOIN sight_compatibility sc ON sc.sight_id = s.id 
+                JOIN guns g ON sc.gun_id = g.id
+                WHERE sc.gun_id = ?
+                ''', [gun[0]]).fetchall()
+    if sightList:
+        weapon.append(random.choice(sightList))
+    else:
+        weapon.append("No Compatible Sight")
+
+
+    magazineList = db.execute('''
+                SELECT m.magazine_name
+                FROM magazines m JOIN magazine_compatibility mc ON mc.magazine_id = m.id 
+                JOIN guns g ON mc.gun_id = g.id
+                WHERE mc.gun_id = ?
+                ''', [gun[0]]).fetchall()
+    if magazineList:
+        weapon.append(random.choice(magazineList))
+    else:
+        weapon.append("No Compatible Magazine")
+
+
+    weapon.append("Temp pistol grip")
+
+
+    boltList = db.execute('''
+                SELECT b.bolt_name
+                FROM bolts b JOIN bolt_compatibility bc ON bc.bolt_id = b.id 
+                JOIN guns g ON bc.gun_id = g.id
+                WHERE bc.gun_id = ?
+                ''', [gun[0]]).fetchall()
+    if boltList:
+        weapon.append(random.choice(boltList))
+    else:
+        weapon.append("No Compatible Bolt")
+
+
+    barrelList = db.execute('''
+                SELECT b.barrel_name
+                FROM barrels b JOIN barrel_compatibility bc ON bc.barrel_id = b.id 
+                JOIN guns g ON bc.gun_id = g.id
+                WHERE bc.gun_id = ?
+                ''', [gun[0]]).fetchall()
+    if barrelList:
+        weapon.append(random.choice(barrelList))
+    else:
+        weapon.append("No Compatible Barrel")
+
+
+    ammoTypeList = db.execute('''
+                    SELECT a.ammo_name
+                    FROM ammo_types a JOIN ammo_type_compatibility ac ON ac.ammo_id = a.id 
+                    JOIN guns g ON ac.gun_id = g.id
+                    WHERE ac.gun_id = ?
+                    ''', [gun[0]]).fetchall()
+    if ammoTypeList:
+        weapon.append(random.choice(ammoTypeList))
+    else:
+        weapon.append("No Compatible Ammo Type")
+
+
+
     return weapon
+
 
 def generate_head(db):
     head = []
