@@ -89,35 +89,18 @@ def generate_weapon(db):
         weapon.append(random.choice(ammoTypeList))
     else:
         weapon.append("No Compatible Ammo Type")
-
-
-
     return weapon
 
 
-def generate_head(db):
-    head = []
-    return head
-
-def generate_armour(db):
-    armour = []
-    return armour
-
-def generate_ammo_type(db):
-    ammoType = []
-    return ammoType
-
-def generate_tac_rig(db):
-    tacRig = []
-    return tacRig
-
-def generate_grenades():
+def generate_gear(db):
+    gear = []
+    medical = ["None", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes"]
     grenades = ["None", "F-1 Hand", "RGD-5 Hand", "VOG-17 Khattabka", "VOG-25 Khattabka", "M67 Hand", "RDG-2B Smoke",
                 "Zarya Stun"]
-    return random.choice(grenades)
-
-
-def generate_backpack(): #Fix capitals
+    stims = ["Combat stimulant injector SJ1 TGLabs", "Combat stimulant injector SJ9 TGLabs",
+            "Combat stimulant injector SJ6 TGLabs", "Propital", "Hemostatic drug Zagustin", "Adrenaline injector",
+            "Meldonin", "AHF1-M", "3-(b-TG)", "L1 (Norepinephrine)", "P22", "Cocktail 'Obdolbos'", "M.U.L.E. stimulator",
+            "None", "None", "None", "None", "None", "None", "None", "None", "None", "None", "None", "None"]
     backpacks =  ["6SH118 Raid Backpack", "LBT-2670 Slim Field Med Pack", "Mystery Ranch Blackjack 50 backpack (multicam)",
                 "Eberlestock F4 Terminator load bearing backpack (tiger stripe)", "SSO 'Attack 2' raid backpack",
                 "Pilgrim tourist backpack", "3V G Paratus 3-Day Operator's Tactical Backpack",
@@ -127,11 +110,19 @@ def generate_backpack(): #Fix capitals
                 "Wartech Berkut VV-102 backpack", "LBT-8005A Day Pack backpack", "Scav Backpack", "Flyye MBSS Backpack",
                 "Sanitar bag", "Duffle bag", "LK 3F Transfer tourist backpack", "Transformer Bag", "VKBO army bag",
                 "Tactical sling bag"]
-    return random.choice(backpacks)
+    armour = ["temp"]
+    head = ["temp"]
+    tacRig = ["temp"]
 
-def generate_medical():
-    medical = ["None", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes"]
-    return random.choice(medical)
+    gear.append(random.choice(backpacks))
+    gear.append(random.choice(grenades))
+    gear.append(random.choice(armour))
+    gear.append(random.choice(medical))
+    gear.append(random.choice(head))
+    gear.append(random.choice(stims))
+    gear.append(random.choice(tacRig))
+    return gear
+
 
 def generate_gameOption():
     options = []
@@ -142,12 +133,3 @@ def generate_gameOption():
     options.append(random.choice(maps))
     options.append(random.choice(time))
     return options
-
-def generate_stim():
-    stims = ["Combat stimulant injector SJ1 TGLabs", "Combat stimulant injector SJ9 TGLabs",
-            "Combat stimulant injector SJ6 TGLabs", "Propital", "Hemostatic drug Zagustin", "Adrenaline injector",
-            "Meldonin", "AHF1-M", "3-(b-TG)", "L1 (Norepinephrine)", "P22", "Cocktail 'Obdolbos'",
-            "M.U.L.E. stimulator",
-            "None", "None", "None", "None", "None", "None", "None", "None", "None", "None", "None", "None"]
-    return random.choice(stims)
-
