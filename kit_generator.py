@@ -18,15 +18,20 @@ def generate_weapon(db):
 
     if stockList:
         stock = random.choice(stockList)
-        stockName = stock[0]
+        weapon.append(stock[0])
         if (stock[1] == True):
-            stockName += " | Buffer Tube: Temp"
+            print("buffer")
         if (stock[2] == True):
-            stockName += " | Pistol Grip: Temp"
-        weapon.append(stockName)
+            print("pistol")
+
     else:
         weapon.append("No Compatible Stock")
 
+    weapon.append("BufferT")
+
+    weapon.append("Pistol")
+
+    weapon.append("HandG")
 
     sightList = db.execute('''
                 SELECT s.sight_name
@@ -39,6 +44,7 @@ def generate_weapon(db):
     else:
         weapon.append("No Compatible Sight")
 
+    weapon.append("sight Mount")
 
     magazineList = db.execute('''
                 SELECT m.magazine_name
@@ -52,7 +58,19 @@ def generate_weapon(db):
         weapon.append("No Compatible Magazine")
 
 
-    weapon.append("Temp pistol grip")
+    barrelList = db.execute('''
+                SELECT b.barrel_name
+                FROM barrels b JOIN barrel_compatibility bc ON bc.barrel_id = b.id 
+                JOIN guns g ON bc.gun_id = g.id
+                WHERE bc.gun_id = ?
+                ''', [gun[0]]).fetchall()
+    if barrelList:
+        weapon.append(random.choice(barrelList))
+    else:
+        weapon.append("No Compatible Barrel")
+
+    weapon.append("muzzle")
+    weapon.append("muzzle adaptor")
 
 
     boltList = db.execute('''
@@ -66,18 +84,9 @@ def generate_weapon(db):
     else:
         weapon.append("No Compatible Bolt")
 
+    weapon.append("foregrip")
 
-    barrelList = db.execute('''
-                SELECT b.barrel_name
-                FROM barrels b JOIN barrel_compatibility bc ON bc.barrel_id = b.id 
-                JOIN guns g ON bc.gun_id = g.id
-                WHERE bc.gun_id = ?
-                ''', [gun[0]]).fetchall()
-    if barrelList:
-        weapon.append(random.choice(barrelList))
-    else:
-        weapon.append("No Compatible Barrel")
-
+    weapon.append("tactical")
 
     ammoTypeList = db.execute('''
                     SELECT a.ammo_name

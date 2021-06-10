@@ -1,29 +1,31 @@
 DROP TABLE IF EXISTS guns;
 DROP TABLE IF EXISTS stocks;
-DROP TABLE IF EXISTS sights;
-DROP TABLE IF EXISTS magazines;
-DROP TABLE IF EXISTS barrels;
-DROP TABLE IF EXISTS bolts;
+DROP TABLE IF EXISTS buffer_tubes;
 DROP TABLE IF EXISTS pistol_grips;
 DROP TABLE IF EXISTS hand_guards;
-DROP TABLE IF EXISTS buffer_tubes;
-DROP TABLE IF EXISTS mounts;
+DROP TABLE IF EXISTS sights;
+DROP TABLE IF EXISTS sight_mounts;
+DROP TABLE IF EXISTS magazines;
+DROP TABLE IF EXISTS barrels;
+DROP TABLE IF EXISTS muzzles;
+DROP TABLE IF EXISTS muzzle_adaptors;
+DROP TABLE IF EXISTS bolts;
 DROP TABLE IF EXISTS fore_grips;
 DROP TABLE IF EXISTS tacticals;
-DROP TABLE IF EXISTS muzzles;
 DROP TABLE IF EXISTS ammo_types;
 DROP TABLE IF EXISTS stock_compatibility;
-DROP TABLE IF EXISTS sight_compatibility;
-DROP TABLE IF EXISTS magazine_compatibility;
-DROP TABLE IF EXISTS barrel_compatibility;
-DROP TABLE IF EXISTS bolt_compatibility;
+DROP TABLE IF EXISTS buffer_tube_compatibility;
 DROP TABLE IF EXISTS pistol_grip_compatibility;
 DROP TABLE IF EXISTS hand_guard_compatibility;
-DROP TABLE IF EXISTS buffer_tube_compatibility;
-DROP TABLE IF EXISTS mount_compatibility;
+DROP TABLE IF EXISTS sight_compatibility;
+DROP TABLE IF EXISTS sight_mount_compatibility;
+DROP TABLE IF EXISTS magazine_compatibility;
+DROP TABLE IF EXISTS barrel_compatibility;
+DROP TABLE IF EXISTS muzzle_compatibility;
+DROP TABLE IF EXISTS muzzle_adaptor_compatibility;
+DROP TABLE IF EXISTS bolt_compatibility;
 DROP TABLE IF EXISTS fore_grip_compatibility;
 DROP TABLE IF EXISTS tactical_compatibility;
-DROP TABLE IF EXISTS muzzle_compatibility;
 DROP TABLE IF EXISTS ammo_type_compatibility;
 
 
@@ -38,31 +40,14 @@ CREATE TABLE stocks (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   stock_name TEXT UNIQUE NOT NULL,
   buffer_tube_required BOOLEAN, --NOT NULL,
-  pistol_grip_required BOOLEAN --NOT NULL
+  pistol_grip_required BOOLEAN, --NOT NULL,
+  hand_guard_required BOOLEAN --NOT NULL
 );
 
--- Sights
-CREATE TABLE sights (
+-- Buffer Tubes
+CREATE TABLE buffer_tubes (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  sight_name TEXT UNIQUE NOT NULL
-);
-
--- Magazines
-CREATE TABLE magazines (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  magazine_name TEXT UNIQUE NOT NULL
-);
-
--- Barrels
-CREATE TABLE barrels (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  barrel_name TEXT UNIQUE NOT NULL
-);
-
--- Bolts
-CREATE TABLE bolts (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  bolt_name TEXT UNIQUE NOT NULL
+  buffer_tube_name TEXT UNIQUE NOT NULL
 );
 
 -- Pistol Grips
@@ -77,16 +62,48 @@ CREATE TABLE hand_guards (
   hand_guard_name TEXT UNIQUE NOT NULL
 );
 
--- Buffer Tubes
-CREATE TABLE buffer_tubes (
+-- Sights
+CREATE TABLE sights (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  buffer_tube_name TEXT UNIQUE NOT NULL
+  sight_name TEXT UNIQUE NOT NULL,
+  mount_required BOOLEAN --NOT NULL
 );
 
--- Mounts
-CREATE TABLE mounts (
+-- Sight Mounts
+CREATE TABLE sight_mounts (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   mount_name TEXT UNIQUE NOT NULL
+);
+
+-- Magazines
+CREATE TABLE magazines (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  magazine_name TEXT UNIQUE NOT NULL
+);
+
+-- Barrels
+CREATE TABLE barrels (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  barrel_name TEXT UNIQUE NOT NULL
+);
+
+-- Muzzles
+CREATE TABLE muzzles (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  muzzle_name TEXT UNIQUE NOT NULL,
+  adaptor_required BOOLEAN --NOT NULL
+);
+
+-- Muzzle Adaptors
+CREATE TABLE muzzle_adaptors (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  adaptor_name TEXT UNIQUE NOT NULL
+);
+
+-- Bolts
+CREATE TABLE bolts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  bolt_name TEXT UNIQUE NOT NULL
 );
 
 -- Fore Grips
@@ -99,12 +116,6 @@ CREATE TABLE fore_grips (
 CREATE TABLE tacticals (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   tactical_name TEXT UNIQUE NOT NULL
-);
-
--- Muzzles
-CREATE TABLE muzzles (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  muzzle_name TEXT UNIQUE NOT NULL
 );
 
 -- Ammo Types
@@ -120,48 +131,6 @@ CREATE TABLE stock_compatibility (
   PRIMARY KEY (gun_id, stock_id)
 );
 
---Gun -> Sights
-CREATE TABLE sight_compatibility (
-  gun_id INTEGER REFERENCES guns (id),
-  sight_id INTEGER REFERENCES sights (id),
-  PRIMARY KEY (gun_id, sight_id)
-);
-
---Gun -> Magazines
-CREATE TABLE magazine_compatibility (
-  gun_id INTEGER REFERENCES guns (id),
-  magazine_id INTEGER REFERENCES maagzines (id),
-  PRIMARY KEY (gun_id, magazine_id)
-);
-
---Gun -> Barrels
-CREATE TABLE barrel_compatibility (
-  gun_id INTEGER REFERENCES guns (id),
-  barrel_id INTEGER REFERENCES barrels (id),
-  PRIMARY KEY (gun_id, barrel_id)
-);
-
---Gun -> Bolts
-CREATE TABLE bolt_compatibility (
-  gun_id INTEGER REFERENCES guns (id),
-  bolt_id INTEGER REFERENCES bolts (id),
-  PRIMARY KEY (gun_id, bolt_id)
-);
-
---Gun -> Pistol Grips
-CREATE TABLE pistol_grip_compatibility (
-  gun_id INTEGER REFERENCES guns (id),
-  pistol_grip_id INTEGER REFERENCES pistol_grips (id),
-  PRIMARY KEY (gun_id, pistol_grip_id)
-);
-
---Gun -> Hand Guards
-CREATE TABLE hand_guard_compatibility (
-  gun_id INTEGER REFERENCES guns (id),
-  hand_guard_id INTEGER REFERENCES hand_guards (id),
-  PRIMARY KEY (gun_id, hand_guard_id)
-);
-
 --Stock -> Buffer Tubes
 CREATE TABLE buffer_tube_compatibility (
   stock_id INTEGER REFERENCES stocks (id),
@@ -169,11 +138,18 @@ CREATE TABLE buffer_tube_compatibility (
   PRIMARY KEY (stock_id, buffer_tube_id)
 );
 
---Gun -> Mounts
-CREATE TABLE mount_compatibility (
+--Stock -> Pistol Grips
+CREATE TABLE pistol_grip_compatibility (
   gun_id INTEGER REFERENCES guns (id),
-  mount_id INTEGER REFERENCES mounts (id),
-  PRIMARY KEY (gun_id, mount_id)
+  pistol_grip_id INTEGER REFERENCES pistol_grips (id),
+  PRIMARY KEY (gun_id, pistol_grip_id)
+);
+
+--Stock -> Hand Guards
+CREATE TABLE hand_guard_compatibility (
+  gun_id INTEGER REFERENCES guns (id),
+  hand_guard_id INTEGER REFERENCES hand_guards (id),
+  PRIMARY KEY (gun_id, hand_guard_id)
 );
 
 --Gun -> Fore Grips
@@ -190,11 +166,53 @@ CREATE TABLE tactical_compatibility (
   PRIMARY KEY (gun_id, tactical_id)
 );
 
---Gun -> Muzzles
-CREATE TABLE muzzle_compatibility (
+--Gun -> Sights
+CREATE TABLE sight_compatibility (
   gun_id INTEGER REFERENCES guns (id),
+  sight_id INTEGER REFERENCES sights (id),
+  PRIMARY KEY (gun_id, sight_id)
+);
+
+--Sight -> Mounts
+CREATE TABLE sight_mount_compatibility (
+  gun_id INTEGER REFERENCES guns (id),
+  mount_id INTEGER REFERENCES sight_mounts (id),
+  PRIMARY KEY (gun_id, mount_id)
+);
+
+--Gun -> Magazines
+CREATE TABLE magazine_compatibility (
+  gun_id INTEGER REFERENCES guns (id),
+  magazine_id INTEGER REFERENCES maagzines (id),
+  PRIMARY KEY (gun_id, magazine_id)
+);
+
+--Gun -> Barrels
+CREATE TABLE barrel_compatibility (
+  gun_id INTEGER REFERENCES guns (id),
+  barrel_id INTEGER REFERENCES barrels (id),
+  PRIMARY KEY (gun_id, barrel_id)
+);
+
+--Barrel -> Muzzles
+CREATE TABLE muzzle_compatibility (
+  barrel_id INTEGER REFERENCES barrels (id),
   muzzle_id INTEGER REFERENCES muzzles (id),
-  PRIMARY KEY (gun_id, muzzle_id)
+  PRIMARY KEY (barrel_id, muzzle_id)
+);
+
+--Muzzle -> Adaptors
+CREATE TABLE muzzle_adaptor_compatibility (
+  muzzle_id INTEGER REFERENCES muzzles (id),
+  adaptor_id INTEGER REFERENCES adaptors (id),
+  PRIMARY KEY (muzzle_id, adaptor_id)
+);
+
+--Gun -> Bolts
+CREATE TABLE bolt_compatibility (
+  gun_id INTEGER REFERENCES guns (id),
+  bolt_id INTEGER REFERENCES bolts (id),
+  PRIMARY KEY (gun_id, bolt_id)
 );
 
 --Gun -> Ammo Types
@@ -203,7 +221,6 @@ CREATE TABLE ammo_type_compatibility (
   ammo_id INTEGER REFERENCES ammo_types (id),
   PRIMARY KEY (gun_id, ammo_id)
 );
-
 
 
 -- Inserts
@@ -237,8 +254,8 @@ VALUES ('TDI KRISS Vector Gen.2 .45 ACP submachinegun'), ('TDI Kriss Vector Gen.
 
 
 -- Stocks
-INSERT INTO stocks (stock_name, buffer_tube_required, pistol_grip_required)
-VALUES ('ADAR 2-15 wooden stock', false, false), ('APB detachable wire stock', false, true), ('Armacon Baskak stock', true, true);
+INSERT INTO stocks (stock_name, buffer_tube_required, pistol_grip_required, hand_guard_required)
+VALUES ('ADAR 2-15 wooden stock', false, false, true), ('APB detachable wire stock', false, true, true), ('Armacon Baskak stock', true, true, false);
 
 
 -- INSERT INTO stocks (stock_name, buffer_tube_required, pistol_grip_required)
@@ -270,20 +287,8 @@ VALUES ('ADAR 2-15 wooden stock', false, false), ('APB detachable wire stock', f
 --        ('Wooden stock for KS-23'), ('Wooden stock for Molot OP-SKS'), ('Wooden stock for MP-133/153'), ('Zenit PT-1 "Klassika" stock'), 
 --        ('Zenit PT-3 "Klassika" stock'), ('Zhukov-S for AK');
 
--- Sights
-INSERT INTO sights (sight_name)
-VALUES ('1');
-
--- Magazine
-INSERT INTO magazines (magazine_name)
-VALUES ('1');
-
--- Barrels
-INSERT INTO barrels (barrel_name)
-VALUES ('1');
-
--- Bolts
-INSERT INTO bolts (bolt_name)
+-- Buffer Tubes
+INSERT INTO buffer_tubes (buffer_tube_name)
 VALUES ('1');
 
 -- Pistol Grips
@@ -294,8 +299,32 @@ VALUES ('1');
 INSERT INTO hand_guards (hand_guard_name)
 VALUES ('1');
 
--- Mounts
-INSERT INTO mounts (mount_name)
+-- Sights
+INSERT INTO sights (sight_name)
+VALUES ('1');
+
+-- Sight Mounts
+INSERT INTO sight_mounts (mount_name)
+VALUES ('1');
+
+-- Magazine
+INSERT INTO magazines (magazine_name)
+VALUES ('1');
+
+-- Barrels
+INSERT INTO barrels (barrel_name)
+VALUES ('1');
+
+-- Muzzles
+INSERT INTO muzzles (muzzle_name, adaptor_required)
+VALUES ('1', true);
+
+-- Muzzle Adaptors
+INSERT INTO muzzle_adaptors (adaptor_name)
+VALUES ('1');
+
+-- Bolts
+INSERT INTO bolts (bolt_name)
 VALUES ('1');
 
 -- Fore Grips
@@ -306,8 +335,8 @@ VALUES ('1');
 INSERT INTO tacticals (tactical_name)
 VALUES ('1');
 
--- Muzzles
-INSERT INTO muzzles (muzzle_name)
+-- Ammo Types
+INSERT INTO ammo_types (ammo_name)
 VALUES ('1');
 
 
