@@ -28,7 +28,6 @@ DROP TABLE IF EXISTS fore_grip_compatibility;
 DROP TABLE IF EXISTS tactical_compatibility;
 DROP TABLE IF EXISTS ammo_type_compatibility;
 
-
 -- Guns
 CREATE TABLE guns (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -140,16 +139,16 @@ CREATE TABLE buffer_tube_compatibility (
 
 --Stock -> Pistol Grips
 CREATE TABLE pistol_grip_compatibility (
-  gun_id INTEGER REFERENCES guns (id),
+  stock_id INTEGER REFERENCES guns (id),
   pistol_grip_id INTEGER REFERENCES pistol_grips (id),
-  PRIMARY KEY (gun_id, pistol_grip_id)
+  PRIMARY KEY (stock_id, pistol_grip_id)
 );
 
 --Stock -> Hand Guards
 CREATE TABLE hand_guard_compatibility (
-  gun_id INTEGER REFERENCES guns (id),
+  stock_id INTEGER REFERENCES guns (id),
   hand_guard_id INTEGER REFERENCES hand_guards (id),
-  PRIMARY KEY (gun_id, hand_guard_id)
+  PRIMARY KEY (stock_id, hand_guard_id)
 );
 
 --Gun -> Fore Grips

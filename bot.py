@@ -18,68 +18,57 @@ async def kit(ctx):
         weapon = kg.generate_weapon(db)
         gear = kg.generate_gear(db)
         gameOptions = kg.generate_gameOption()
-        print(weapon)
-        for row in weapon:
-                gun, stock, bufferTube, pistolGrip, handGuard, sight, sightMount, magazine, barrel, muzzle, \
-                muzzleAdaptor, bolt, foreGrip, tactical, ammoType = row
-
-        for row in gear:
-                backpack, grenade, armour, medical, head, stimulator, tacRig = row
-        
-        for row in gameOptions:
-                comms, map, time = row
-      
+  
         weaponEmbed = discord.Embed(title = "Weapon Kit", colour = 1752220)
-        weaponEmbed.add_field(name='───────────', value=f'**Name: **`{gun}`', inline=False)
+        weaponEmbed.add_field(name='───────────', value=f'**Name: **`{weapon[0]}`', inline=False)
 
-        weaponEmbed.add_field(name='\u200b', value=f'**Stock: **`{stock}`', inline=True)
-        weaponEmbed.add_field(name='\u200b', value=f'**Buffer Tube: **`{bufferTube}`', inline=True)
-        weaponEmbed.add_field(name='\u200b', value=f'**Pistol Grip: **`{pistolGrip}`', inline=True)
+        weaponEmbed.add_field(name='\u200b', value=f'**Stock: **`{weapon[1]}`', inline=True)
+        weaponEmbed.add_field(name='\u200b', value=f'**Buffer Tube: **`{weapon[2]}`', inline=True)
+        weaponEmbed.add_field(name='\u200b', value=f'**Pistol Grip: **`{weapon[3]}`', inline=True)
 
 
-        weaponEmbed.add_field(name='\u200b', value=f'**Hand Guards: **`{handGuard}`', inline=True)
-        weaponEmbed.add_field(name='\u200b', value=f'**Sight: **`{sight}`', inline=True)
-        weaponEmbed.add_field(name='\u200b', value=f'**Sight Mount: **`{sightMount}`', inline=True)
+        weaponEmbed.add_field(name='\u200b', value=f'**Hand Guards: **`{weapon[4]}`', inline=True)
+        weaponEmbed.add_field(name='\u200b', value=f'**Sight: **`{weapon[5]}`', inline=True)
+        weaponEmbed.add_field(name='\u200b', value=f'**Sight Mount: **`{weapon[6]}`', inline=True)
 
-        weaponEmbed.add_field(name='\u200b', value=f'**Magazine: **`{magazine}`', inline=True)
-        weaponEmbed.add_field(name='\u200b', value=f'**Barrel: **`{barrel}`', inline=True)
-        weaponEmbed.add_field(name='\u200b', value=f'**Muzzle: **`{muzzle}`', inline=True)
+        weaponEmbed.add_field(name='\u200b', value=f'**Magazine: **`{weapon[7]}`', inline=True)
+        weaponEmbed.add_field(name='\u200b', value=f'**Barrel: **`{weapon[8]}`', inline=True)
+        weaponEmbed.add_field(name='\u200b', value=f'**Muzzle: **`{weapon[9]}`', inline=True)
 
-        weaponEmbed.add_field(name='\u200b', value=f'**Muzzle Adaptor: **`{muzzleAdaptor}`', inline=True)
-        weaponEmbed.add_field(name='\u200b', value=f'**Bolt: **`{bolt}`', inline=True)
-        weaponEmbed.add_field(name='\u200b', value=f'**Fore Grip: **`{foreGrip}`', inline=True)
+        weaponEmbed.add_field(name='\u200b', value=f'**Muzzle Adaptor: **`{weapon[10]}`', inline=True)
+        weaponEmbed.add_field(name='\u200b', value=f'**Bolt: **`{weapon[11]}`', inline=True)
+        weaponEmbed.add_field(name='\u200b', value=f'**Fore Grip: **`{weapon[12]}`', inline=True)
 
-        weaponEmbed.add_field(name='\u200b', value=f'**Tactical: **`{tactical}`', inline=True)
-        weaponEmbed.add_field(name='\u200b', value=f'**Ammo Type: **`{ammoType}`', inline=True)
+        weaponEmbed.add_field(name='\u200b', value=f'**Tactical: **`{weapon[13]}`', inline=True)
+        weaponEmbed.add_field(name='\u200b', value=f'**Ammo Type: **`{weapon[14]}`', inline=True)
         weaponEmbed.add_field(name='\u200b', value="\u200b", inline=True)
 
 
-        otherEmbed = discord.Embed(title = "Gear", colour = 15158332)
-        otherEmbed.add_field(name='───────────', value=f'**Backpack: **`{backpack}`', inline=True)
-        otherEmbed.add_field(name='───────────', value=f'**Grenade: **`{grenade}`', inline=True)
-        otherEmbed.add_field(name='\u200b', value="\u200b", inline=True)
+        gearEmbed = discord.Embed(title = "Gear", colour = 15158332)
+        gearEmbed.add_field(name='───────────', value=f'**Backpack: **`{gear[0]}`', inline=True)
+        gearEmbed.add_field(name='───────────', value=f'**Grenade: **`{gear[1]}`', inline=True)
+        gearEmbed.add_field(name='\u200b', value="\u200b", inline=True)
 
-        otherEmbed.add_field(name='\u200b', value=f'**Armour: **`{armour}`', inline=True)
-        otherEmbed.add_field(name='\u200b', value=f'**Medicals: **`{medical}`', inline=True)
-        otherEmbed.add_field(name='\u200b', value="\u200b", inline=True)
+        gearEmbed.add_field(name='\u200b', value=f'**Armour: **`{gear[2]}`', inline=True)
+        gearEmbed.add_field(name='\u200b', value=f'**Medicals: **`{gear[3]}`', inline=True)
+        gearEmbed.add_field(name='\u200b', value="\u200b", inline=True)
 
-        otherEmbed.add_field(name='\u200b', value=f'**Head: **`{head}`', inline=True)
-        otherEmbed.add_field(name='\u200b', value=f'**Stimulator: **`{stimulator}`', inline=True)
+        gearEmbed.add_field(name='\u200b', value=f'**Head: **`{gear[4]}`', inline=True)
+        gearEmbed.add_field(name='\u200b', value=f'**Stimulator: **`{gear[5]}`', inline=True)
+        gearEmbed.add_field(name='\n\u200b', value="\n\u200b")
         
-        
-        otherEmbed.add_field(name='\u200b', value="\u200b", inline=True)
-        otherEmbed.add_field(name='\u200b', value=f'**Tactical Rig: **`{tacRig}`', inline=True)
-       
-        otherEmbed.add_field(name='\n\u200b', value="\n\u200b")
+        gearEmbed.add_field(name='\u200b', value=f'**Tactical Rig: **`{gear[6]}`', inline=True)
+        gearEmbed.add_field(name='\u200b', value="\u200b", inline=True)
+        gearEmbed.add_field(name='\n\u200b', value="\n\u200b")
 
 
         optionsEmbed = discord.Embed(title = "Game Options", colour = 10181046)
         
-        optionsEmbed.add_field(name='───────────', value=f'**Communication: **`{comms}`', inline=False)
-        optionsEmbed.add_field(name='───────────', value=f'**Map: **`{map}`', inline=False)
-        optionsEmbed.add_field(name='───────────', value=f'**Time: **`{time}`', inline=False)
+        optionsEmbed.add_field(name='───────────', value=f'**Communication: **`{gameOptions[0]}`', inline=False)
+        optionsEmbed.add_field(name='───────────', value=f'**Map: **`{gameOptions[1]}`', inline=False)
+        optionsEmbed.add_field(name='───────────', value=f'**Time: **`{gameOptions[2]}`', inline=False)
         await ctx.send(embed=weaponEmbed)
-        await ctx.send(embed=otherEmbed)
+        await ctx.send(embed=gearEmbed)
         await ctx.send(embed=optionsEmbed)
 
 
