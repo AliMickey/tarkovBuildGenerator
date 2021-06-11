@@ -46,7 +46,6 @@ def generate_weapon(db):
                 JOIN stocks s ON hc.stock_id = s.id
                 WHERE hc.stock_id = ?
                 ''', [stock[4]]).fetchall())
-
     else: 
         weapon.append("None")
     

@@ -253,12 +253,13 @@ VALUES ('TDI KRISS Vector Gen.2 .45 ACP submachinegun'), ('TDI Kriss Vector Gen.
 
 
 -- Stocks
+--temp
 INSERT INTO stocks (stock_name, buffer_tube_required, pistol_grip_required, hand_guard_required)
 VALUES ('ADAR 2-15 wooden stock', false, false, true), ('APB detachable wire stock', false, true, true), ('Armacon Baskak stock', true, true, false);
 
 
 -- INSERT INTO stocks (stock_name, buffer_tube_required, pistol_grip_required)
--- VALUES ('ADAR 2-15 wooden stock', false, false), ('APB detachable wire stock', false, true), ('Armacon Baskak stock'), ('AT AICS polymer stock for M700'), 
+-- VALUES ('ADAR 2-15 wooden stock'), ('APB detachable wire stock'), ('Armacon Baskak stock'), ('AT AICS polymer stock for M700'), 
 --        ('ATI Monte Carlo Mosin rifle stock'), ('B5 Precision stock'), ('Custom cut mosin stock for TOZ-106'), ('Double Star Ace Socom gen.4 stock for AR-15'), 
 --        ('DSA BRS stock for SA-58'), ('DSA Folding stock for SA-58'), ('DSA SPR stock for SA-58'), ('Early produced SIG collapsing/telescoping MCX/MPX stock'), 
 --        ('EMOD Stock'), ('F93 Pro Stock'), ('Fab Defence GL Core Stock'), ('Fab Defence GL Shock Stock'), ('Fab Defence GLR-16-S Stock'), 
@@ -342,4 +343,72 @@ VALUES ('1');
 --Stock Compatibility
 INSERT INTO stock_compatibility (gun_id, stock_id)
 -- ADAR 2-15 .223 Carbine
-VALUES (1, 2);
+VALUES (1, 2), (1, 2);
+-- Gun2
+VALUES (2, 1), (2, 3);
+
+
+--Buffer Tube Compatibility
+INSERT INTO buffer_tube_compatibility (stock_id, buffer_tube_id)
+-- Stock name
+VALUES (1, 2)
+
+
+--Pistol Grip Compatibility
+INSERT INTO pistol_grip_compatibility (stock_id, pistol_grip_id)
+-- Stock name
+VALUES (1, 2)
+
+
+--Hand Guard Compatibility
+INSERT INTO hand_guard_compatibility (stock_id, hand_guard_id)
+-- Stock name
+VALUES (1, 2)
+
+
+--Sight Compatibility
+INSERT INTO sight_compatibility (gun_id, sight_id)
+-- ADAR 2-15 .223 Carbine
+VALUES (1, 2)
+
+
+--Magazine Compatibility
+INSERT INTO magazine_compatibility (gun_id, magazine_id)
+-- ADAR 2-15 .223 Carbine
+VALUES (1, 2)
+
+
+--Barrel Compatibility
+INSERT INTO barrel_compatibility (gun_id, barrel_id)
+-- ADAR 2-15 .223 Carbine
+VALUES (1, 2)
+
+
+--Muzzle Compatibility
+INSERT INTO muzzle_compatibility (gun_id, muzzle_id)
+-- ADAR 2-15 .223 Carbine
+VALUES (1, 2)
+
+
+--Muzzle Adaptor Compatibility
+INSERT INTO muzzle_adaptor_compatibility (muzzle_id, adaptor_id)
+-- Muzzle name
+VALUES (1, 2)
+
+
+--Bolt Compatibility
+INSERT INTO bolt_compatibility (gun_id, bolt_id)
+-- ADAR 2-15 .223 Carbine
+VALUES (1, 2)
+
+
+--Ammo Type Compatibility
+INSERT INTO ammo_type_compatibility (gun_id, ammo_type_id)
+-- ADAR 2-15 .223 Carbine
+VALUES (1, 2)
+
+
+--Ammo Type Compatibility
+INSERT INTO ammo_type_compatibility (gun_id, ammo_type_id)
+-- ADAR 2-15 .223 Carbine
+VALUES (1, 2)
