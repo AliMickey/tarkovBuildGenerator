@@ -343,7 +343,7 @@ VALUES ('1');
 --Stock Compatibility
 INSERT INTO stock_compatibility (gun_id, stock_id)
 -- ADAR 2-15 .223 Carbine
-VALUES (1, 2), (1, 2);
+VALUES (1, 2), (1, 3);
 -- Gun2
 VALUES (2, 1), (2, 3);
 
@@ -351,64 +351,58 @@ VALUES (2, 1), (2, 3);
 --Buffer Tube Compatibility
 INSERT INTO buffer_tube_compatibility (stock_id, buffer_tube_id)
 -- Stock name
-VALUES (1, 2)
+VALUES (1, 2);
 
 
 --Pistol Grip Compatibility
 INSERT INTO pistol_grip_compatibility (stock_id, pistol_grip_id)
 -- Stock name
-VALUES (1, 2)
+VALUES (1, 2);
 
 
 --Hand Guard Compatibility
 INSERT INTO hand_guard_compatibility (stock_id, hand_guard_id)
 -- Stock name
-VALUES (1, 2)
+VALUES (1, 2);
 
 
 --Sight Compatibility
 INSERT INTO sight_compatibility (gun_id, sight_id)
 -- ADAR 2-15 .223 Carbine
-VALUES (1, 2)
+VALUES (1, 2);
 
 
 --Magazine Compatibility
 INSERT INTO magazine_compatibility (gun_id, magazine_id)
 -- ADAR 2-15 .223 Carbine
-VALUES (1, 2)
+VALUES (1, 2);
 
 
 --Barrel Compatibility
 INSERT INTO barrel_compatibility (gun_id, barrel_id)
 -- ADAR 2-15 .223 Carbine
-VALUES (1, 2)
+VALUES (1, 2);
 
 
 --Muzzle Compatibility
-INSERT INTO muzzle_compatibility (gun_id, muzzle_id)
--- ADAR 2-15 .223 Carbine
-VALUES (1, 2)
+INSERT INTO muzzle_compatibility (barrel_id, muzzle_id)
+-- barrel name
+VALUES (1, 2);
 
 
 --Muzzle Adaptor Compatibility
 INSERT INTO muzzle_adaptor_compatibility (muzzle_id, adaptor_id)
 -- Muzzle name
-VALUES (1, 2)
+VALUES (1, 2);
 
 
 --Bolt Compatibility
 INSERT INTO bolt_compatibility (gun_id, bolt_id)
 -- ADAR 2-15 .223 Carbine
-VALUES (1, 2)
+VALUES (1, 2);
 
 
 --Ammo Type Compatibility
-INSERT INTO ammo_type_compatibility (gun_id, ammo_type_id)
+INSERT INTO ammo_type_compatibility (gun_id, ammo_id)
 -- ADAR 2-15 .223 Carbine
-VALUES (1, 2)
-
-
---Ammo Type Compatibility
-INSERT INTO ammo_type_compatibility (gun_id, ammo_type_id)
--- ADAR 2-15 .223 Carbine
-VALUES (1, 2)
+VALUES (1, 2);
