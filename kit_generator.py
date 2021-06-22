@@ -6,77 +6,102 @@ def generate_weapon(db):
     #                     SELECT id, gun_name
     #                     FROM guns
     #                     ''').fetchall())
-    gun = [1, "AK-TEST"]
+    gun = [1, "ADAR 2-15 .223 Carbine"]
     weapon.append(gun[1])
 
     stockList = (db.execute('''
-                SELECT s.stock_name, s.buffer_tube_required, s.pistol_grip_required, s.hand_guard_required, s.id
+                SELECT s.id, s.stock_name 
                 FROM stocks s JOIN stock_compatibility sc ON sc.stock_id = s.id 
                 JOIN guns g ON sc.gun_id = g.id
                 WHERE sc.gun_id = ?
                 ''', [gun[0]]).fetchall())
 
-    bufferTubes = []
-    pistolGrips = []
-    handGuards = []
+    stock = random.choice(stockList)
+    weapon.append(stock[1])
 
-    if stockList:
-        stock = random.choice(stockList)
-        weapon.append(stock[0])
-        if (stock[1] == True):
-            bufferTubes = (db.execute('''
+    bufferTubes = (db.execute('''
                 SELECT b.buffer_tube_name
                 FROM buffer_tubes b JOIN buffer_tube_compatibility bc ON bc.buffer_tube_id = b.id 
                 JOIN stocks s ON bc.stock_id = s.id
                 WHERE bc.stock_id = ?
-                ''', [stock[4]]).fetchall())
+                ''', [stock[0]]).fetchall())
 
-        if (stock[2] == True):
-            pistolGrips = (db.execute('''
+    pistolGrips = (db.execute('''
                 SELECT p.pistol_grip_name
                 FROM pistol_grips p JOIN pistol_grip_compatibility pc ON pc.pistol_grip_id = p.id 
                 JOIN stocks s ON pc.stock_id = s.id
                 WHERE pc.stock_id = ?
-                ''', [stock[4]]).fetchall())
+                ''', [stock[0]]).fetchall())
 
-        if (stock[3] == True):
-            handGuards = (db.execute('''
-                SELECT h.hand_guard_name
+    handGuards = (db.execute('''
+                SELECT h.id, h.hand_guard_name
                 FROM hand_guards h JOIN hand_guard_compatibility hc ON hc.hand_guard_id = h.id 
-                JOIN stocks s ON hc.stock_id = s.id
-                WHERE hc.stock_id = ?
-                ''', [stock[4]]).fetchall())
-    else: 
-        weapon.append("None")
+                JOIN guns g ON hc.gun_id = g.id
+                WHERE hc.gun_id = ?
+                ''', [gun[0]]).fetchall())
+
+    weapon.append(random.choice(bufferTubes))
+    weapon.append(random.choice(pistolGrips))
+    handGuard = random.choice(handGuards)
+    weapon.append(handGuard[1])
+
+    # if stockList:
+    #     stock = random.choice(stockList)
+    #     weapon.append(stock[0])
+    #     if (stock[1] == True):
+    #         bufferTubes = (db.execute('''
+    #             SELECT b.buffer_tube_name
+    #             FROM buffer_tubes b JOIN buffer_tube_compatibility bc ON bc.buffer_tube_id = b.id 
+    #             JOIN stocks s ON bc.stock_id = s.id
+    #             WHERE bc.stock_id = ?
+    #             ''', [stock[4]]).fetchall())
+
+    #     if (stock[2] == True):
+    #         pistolGrips = (db.execute('''
+    #             SELECT p.pistol_grip_name
+    #             FROM pistol_grips p JOIN pistol_grip_compatibility pc ON pc.pistol_grip_id = p.id 
+    #             JOIN stocks s ON pc.stock_id = s.id
+    #             WHERE pc.stock_id = ?
+    #             ''', [stock[4]]).fetchall())
+
+    #     if (stock[3] == True):
+    #         handGuards = (db.execute('''
+    #             SELECT h.hand_guard_name
+    #             FROM hand_guards h JOIN hand_guard_compatibility hc ON hc.hand_guard_id = h.id 
+    #             JOIN stocks s ON hc.stock_id = s.id
+    #             WHERE hc.stock_id = ?
+    #             ''', [stock[4]]).fetchall())
+    # else: 
+    #     weapon.append("None")
     
-    if bufferTubes: weapon.append(random.choice(bufferTubes))
-    else:  weapon.append("None")
+    # if bufferTubes: weapon.append(random.choice(bufferTubes))
+    # else:  weapon.append("None")
 
-    if pistolGrips: weapon.append(random.choice(pistolGrips))
-    else: weapon.append("None")
+    # if pistolGrips: weapon.append(random.choice(pistolGrips))
+    # else: weapon.append("None")
 
-    if handGuards: weapon.append(random.choice(handGuards))
-    else: weapon.append("None")
+    # if handGuards: weapon.append(random.choice(handGuards))
+    # else: weapon.append("None")
 
 
     sightList = db.execute('''
-                SELECT s.sight_name, s.mount_required, s.id
+                SELECT s.id, s.sight_name, s.mount_required
                 FROM sights s JOIN sight_compatibility sc ON sc.sight_id = s.id 
-                JOIN guns g ON sc.gun_id = g.id
-                WHERE sc.gun_id = ?
+                JOIN receivers r ON sc.receiver_id = r.id
+                WHERE sc.receiver_id = ?
                 ''', [gun[0]]).fetchall()
     sightMounts = []
 
     if sightList:
         sight = random.choice(sightList)
-        weapon.append(sight[0])
+        weapon.append(sight[1])
         if (sight[1] == True):
             sightMounts = (db.execute('''
                 SELECT m.mount_name
-                FROM mounts m JOIN sight_mount_compatibility sc ON sc.mount_id = b.id 
+                FROM sight_mounts m JOIN sight_mount_compatibility sc ON sc.mount_id = b.id 
                 JOIN sights s ON sc.sight_id = s.id
                 WHERE sc.sight_id = ?
-                ''', [sight[2]]).fetchall())
+                ''', [sight[0]]).fetchall())
     else: 
         weapon.append("None")
 
@@ -109,7 +134,7 @@ def generate_weapon(db):
 
 
     muzzleList = db.execute('''
-                SELECT m.muzzle_name, m.adaptor_required, m.id
+                SELECT m.id, m.muzzle_name, m.adaptor_required
                 FROM muzzles m JOIN muzzle_compatibility mc ON mc.muzzle_id = m.id 
                 JOIN barrels b ON mc.barrel_id = b.id
                 WHERE mc.barrel_id = ?
@@ -118,14 +143,14 @@ def generate_weapon(db):
 
     if muzzleList:
         muzzle = random.choice(sightList)
-        weapon.append(muzzle[0])
+        weapon.append(muzzle[1])
         if (muzzle[1] == True):
             muzzleAdaptors = (db.execute('''
                 SELECT m.adaptor_name
                 FROM muzzle_adaptors m JOIN muzzle_adaptor_compatibility mc ON mc.adaptor_id = m.id 
                 JOIN muzzles mu ON mc.muzzle_id = mu.id
                 WHERE mc.muzzle_id = ?
-                ''', [muzzle[2]]).fetchall())
+                ''', [muzzle[0]]).fetchall())
     else: 
         weapon.append("None")
 
@@ -144,9 +169,27 @@ def generate_weapon(db):
     else:
         weapon.append("None")
 
-    weapon.append("foregrip")
+    foreGripList = db.execute('''
+                    SELECT f.fore_grip_name
+                    FROM fore_grips f JOIN fore_grip_compatibility fc ON fc.fore_grip_id = f.id 
+                    JOIN hand_guards h ON fc.hand_guard_id = h.id
+                    WHERE fc.hand_guard_id = ?
+                    ''', [handGuard[0]]).fetchall()
+    if foreGripList:
+        weapon.append(random.choice(foreGripList))
+    else:
+        weapon.append("None")
 
-    weapon.append("tactical")
+    tacticalList = db.execute('''
+                    SELECT t.tactical_name
+                    FROM tacticals t JOIN tactical_compatibility tc ON tc.tactical_id = t.id 
+                    JOIN guns g ON tc.gun_id = g.id
+                    WHERE tc.gun_id = ?
+                    ''', [gun[0]]).fetchall()
+    if tacticalList:
+        weapon.append(random.choice(tacticalList))
+    else:
+        weapon.append("None")
 
     ammoTypeList = db.execute('''
                     SELECT a.ammo_name

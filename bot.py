@@ -18,6 +18,7 @@ async def kit(ctx):
         weapon = kg.generate_weapon(db)
         gear = kg.generate_gear(db)
         gameOptions = kg.generate_gameOption()
+        print(weapon)
   
         weaponEmbed = discord.Embed(title = "Weapon Kit", colour = 1752220)
         weaponEmbed.add_field(name='───────────', value=f'**Name: **`{weapon[0]}`', inline=False)

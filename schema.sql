@@ -3,6 +3,8 @@ DROP TABLE IF EXISTS stocks;
 DROP TABLE IF EXISTS buffer_tubes;
 DROP TABLE IF EXISTS pistol_grips;
 DROP TABLE IF EXISTS hand_guards;
+DROP TABLE IF EXISTS receivers;
+DROP TABLE IF EXISTS gas_tubes;
 DROP TABLE IF EXISTS sights;
 DROP TABLE IF EXISTS sight_mounts;
 DROP TABLE IF EXISTS magazines;
@@ -17,6 +19,10 @@ DROP TABLE IF EXISTS stock_compatibility;
 DROP TABLE IF EXISTS buffer_tube_compatibility;
 DROP TABLE IF EXISTS pistol_grip_compatibility;
 DROP TABLE IF EXISTS hand_guard_compatibility;
+DROP TABLE IF EXISTS receiver_compatibility;
+DROP TABLE IF EXISTS gas_tube_compatibility;
+DROP TABLE IF EXISTS fore_grip_compatibility;
+DROP TABLE IF EXISTS tactical_compatibility;
 DROP TABLE IF EXISTS sight_compatibility;
 DROP TABLE IF EXISTS sight_mount_compatibility;
 DROP TABLE IF EXISTS magazine_compatibility;
@@ -24,9 +30,10 @@ DROP TABLE IF EXISTS barrel_compatibility;
 DROP TABLE IF EXISTS muzzle_compatibility;
 DROP TABLE IF EXISTS muzzle_adaptor_compatibility;
 DROP TABLE IF EXISTS bolt_compatibility;
-DROP TABLE IF EXISTS fore_grip_compatibility;
-DROP TABLE IF EXISTS tactical_compatibility;
 DROP TABLE IF EXISTS ammo_type_compatibility;
+
+--> Gun --> Ammo Type --> Bolt --> (Receiver --> Sight --> Sight Mount) --> Magazine --> Tactical --> Stock 
+--> Buffer Tube --> Pistol --> (Barrel --> Hand Guard --> (Muzzle --> Muzzle Adaptor) --> (Foregrip)) --> Gas Tube
 
 -- Guns
 CREATE TABLE guns (
@@ -40,7 +47,8 @@ CREATE TABLE stocks (
   stock_name TEXT UNIQUE NOT NULL,
   buffer_tube_required BOOLEAN, --NOT NULL,
   pistol_grip_required BOOLEAN, --NOT NULL,
-  hand_guard_required BOOLEAN --NOT NULL
+  hand_guard_required BOOLEAN --NOT NULL,
+  --gas_tube_required BOOLEAN --NOT NULL
 );
 
 -- Buffer Tubes
@@ -52,13 +60,27 @@ CREATE TABLE buffer_tubes (
 -- Pistol Grips
 CREATE TABLE pistol_grips (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  pistol_grip_name TEXT UNIQUE NOT NULL
+  pistol_grip_name TEXT UNIQUE NOT NULL,
+  buffer_tube_required BOOLEAN --NOT NULL
 );
 
 -- Hand Guards
 CREATE TABLE hand_guards (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   hand_guard_name TEXT UNIQUE NOT NULL
+);
+
+-- Receivers
+CREATE TABLE receivers (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  receiver_name TEXT UNIQUE NOT NULL
+);
+
+-- Gas Tubes
+CREATE TABLE gas_tubes (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  gas_tube_name TEXT UNIQUE NOT NULL,
+  handguard_required BOOLEAN -- NOT NULL
 );
 
 -- Sights
@@ -139,23 +161,30 @@ CREATE TABLE buffer_tube_compatibility (
 
 --Stock -> Pistol Grips
 CREATE TABLE pistol_grip_compatibility (
-  stock_id INTEGER REFERENCES guns (id),
+  stock_id INTEGER REFERENCES stocks (id),
   pistol_grip_id INTEGER REFERENCES pistol_grips (id),
   PRIMARY KEY (stock_id, pistol_grip_id)
 );
 
---Stock -> Hand Guards
+--Gun -> Hand Guards
 CREATE TABLE hand_guard_compatibility (
-  stock_id INTEGER REFERENCES guns (id),
+  gun_id INTEGER REFERENCES guns (id),
   hand_guard_id INTEGER REFERENCES hand_guards (id),
-  PRIMARY KEY (stock_id, hand_guard_id)
+  PRIMARY KEY (gun_id, hand_guard_id)
 );
 
---Gun -> Fore Grips
-CREATE TABLE fore_grip_compatibility (
+--Gun -> Receiver
+CREATE TABLE receiver_compatibility (
   gun_id INTEGER REFERENCES guns (id),
+  receiver_id INTEGER REFERENCES receiver (id),
+  PRIMARY KEY (gun_id, receiver_id)
+);
+
+--Hand Guard -> Fore Grips
+CREATE TABLE fore_grip_compatibility (
+  hand_guard_id INTEGER REFERENCES hand_guards (id),
   fore_grip_id INTEGER REFERENCES fore_grips (id),
-  PRIMARY KEY (gun_id, fore_grip_id)
+  PRIMARY KEY (hand_guard_id, fore_grip_id)
 );
 
 --Gun -> Tacticals
@@ -165,18 +194,18 @@ CREATE TABLE tactical_compatibility (
   PRIMARY KEY (gun_id, tactical_id)
 );
 
---Gun -> Sights
+--Receiver -> Sights
 CREATE TABLE sight_compatibility (
-  gun_id INTEGER REFERENCES guns (id),
+  receiver_id INTEGER REFERENCES receivers (id),
   sight_id INTEGER REFERENCES sights (id),
-  PRIMARY KEY (gun_id, sight_id)
+  PRIMARY KEY (receiver_id, sight_id)
 );
 
 --Sight -> Mounts
 CREATE TABLE sight_mount_compatibility (
-  gun_id INTEGER REFERENCES guns (id),
+  sight_id INTEGER REFERENCES sights (id),
   mount_id INTEGER REFERENCES sight_mounts (id),
-  PRIMARY KEY (gun_id, mount_id)
+  PRIMARY KEY (sight_id, mount_id)
 );
 
 --Gun -> Magazines
@@ -255,7 +284,9 @@ VALUES ('TDI KRISS Vector Gen.2 .45 ACP submachinegun'), ('TDI Kriss Vector Gen.
 -- Stocks
 --temp
 INSERT INTO stocks (stock_name, buffer_tube_required, pistol_grip_required, hand_guard_required)
+VALUES ('Izhmash AK-12 regular stock', false, false, false);
 VALUES ('ADAR 2-15 wooden stock', false, false, true), ('APB detachable wire stock', false, true, true), ('Armacon Baskak stock', true, true, false);
+
 
 
 -- INSERT INTO stocks (stock_name, buffer_tube_required, pistol_grip_required)
@@ -322,6 +353,7 @@ VALUES ('US Palm pistol grip for AK'), ('HK Grip V.2 pistol grip for AR-15 based
 
 -- Hand Guards
 INSERT INTO hand_guards (hand_guard_name)
+VALUES ('daniel defence FDE');
 VALUES ('Lancer OEM 14 inch M-LOK foregrip for MPX'), ('Troy Industries 13" M-LOK foregrip for 416A5'), ('Strike Industries CRUX 15" M-LOK foregrip for 416A5'), 
        ('Desert Tech foregrip for MDR'), ('HK MRS 14" keymod foregrip for 416A5'), ('Zenit B-10 AK Handguard'), ('SAI 10" QD Rail foregrip for AR15'), 
        ('Midwest 14 inch M-LOK foregrip for MPX'), ('Midwest 10.5 inch M-LOK foregrip for MPX'), ('Midwest 4.5 inch M-LOK foregrip for MPX'), 
@@ -357,8 +389,17 @@ VALUES ('Lancer OEM 14 inch M-LOK foregrip for MPX'), ('Troy Industries 13" M-LO
        ('Sword int. 18 inch handguard for Mk-18'), ('STM 9 inch M-LOK handguard for AR-15'), ('STM 12 inch M-LOK handguard for AR-15'), 
        ('STM 15 inch M-LOK handguard for AR-15');
 
+-- Receivers
+INSERT INTO receivers (receiver_name)
+VALUES ('upper receiver ADAR');
+
+-- Gas Tubes
+INSERT INTO gas_tubes (gas_tube_name)
+VALUES ('colt m4 front sight');
+
 -- Sights
 INSERT INTO sights (sight_name)
+VALUES ('Eotech HHS-1');
 VALUES ('ELCAN SpecterDR 1x/4x Scope'), ('Leupold Mark 4 HAMR 4x24mm DeltaPoint hybrid assault scope'), ('Primary Arms Compact prism scope 2.5x'), ('Sig BRAVO4 4X30 Scope'), 
        ('Trijicon ACOG 3.5x35 scope'), ('Trijicon ACOG TA01NSN 4x32 scope'), ('Valday PS-320 1x/6x Scope'), ('Monstrum Compact prism scope 2x32'), 
        ('Aimpoint COMP M4 reflex sight'), ('Cobra EKP-8-02 reflex sight'), ('Cobra EKP-8-18 reflex sight'), ('Eotech 553 holographic sight'), 
@@ -384,6 +425,7 @@ VALUES ('25 mm mount ring'), ('25mm rings made by UTG'), ('30mm ring-mount AR- P
 
 -- Magazine
 INSERT INTO magazines (magazine_name)
+VALUES ('Colt AR-15');
 VALUES ('F5 MPX Drum mag 50-round 9x19 magazine'), ('TROY Battlemag 5.56x45 STANAG 30-round magazine'), ('ProMag AALVX 35 7.62x39 35-round SKS magazine'), 
        ('MPX with TTI Base pad +11 41-round 9x19 magazine'), ('7.62x51 metal magazine for VPO-101 and compatibles, 10-round capacity'), 
        ('5-shot MC 20-01 Sb.3 20ga magazine for TOZ-106'), ('20-round SVD 7.62x54 magazine'), ('7.62x51 metal magazine for VPO-101 and compatibles, 5-round capacity'), 
@@ -434,6 +476,7 @@ VALUES ('F5 MPX Drum mag 50-round 9x19 magazine'), ('TROY Battlemag 5.56x45 STAN
 
 -- Barrels
 INSERT INTO barrels (barrel_name)
+VALUES ('18" barrel AR-15');
 VALUES ('10.6" barrel for 416A5 and compatible 5.56x45'), ('10.5" 9x19 barrel for MPX'), ('6.5" 9x19 barrel for MPX'), ('406mm barrel for MDR and compatible 5.56x45'), 
        ('22" barrel for a SVDS 7.62x54'), ('4.5" 9x19 barrel for MPX'), ('14" 9x19 barrel for MPX'), ('406mm Molot barrel for AR-15 and compatible 5.56x45'), 
        ('	20" barrel for a Remington M700 7.62x51 NATO'), ('26" barrel for a Remington M700 7.62x51 NATO'), ('Sawn off 200mm Mosin barrel'), ('Sawn off 220mm Mosin barrel'), 
@@ -522,10 +565,11 @@ VALUES ('Gemtech ONE 7.62x51 Sound Suppressor', true), ('AAC Illusion 9 9x19mm s
 
 -- Muzzle Adaptors
 INSERT INTO muzzle_adaptors (adaptor_name)
-VALUES ('Direct Thread Mount adapter for Gemtech ONE'), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), ('');
+VALUES ('Direct Thread Mount adapter for Gemtech ONE');
 
 -- Bolts
 INSERT INTO bolts (bolt_name)
+VALUES ('ADAR 2-15 charging handle');
 VALUES ('Geissele "SCH" charging handle for MPX'), ('ADAR 2-15 charging handle for AR-15'), ('HK Extended latch Charging Handle'), 
        ('Badger Ordnance Tactical Charging Handle Latch'), ('Raptor charging handle for AR-15'), ('Colt AR-15 charging handle for AR-15'), ('MP5 Cocking Handle'), 
        ('SIG double latch charging handle for MPX'), ('SIG single latch charging handle for MPX'), ('FN charge handle for P90'), ('K&M The Handler charge handle for P90'), 
@@ -535,6 +579,7 @@ VALUES ('Geissele "SCH" charging handle for MPX'), ('ADAR 2-15 charging handle f
 
 -- Fore Grips
 INSERT INTO fore_grips (fore_grip_name)
+VALUES ('Fortis shift tac grip');
 VALUES ('KAC Vertical pistol grip'), ('BCM MOD.3 Tactical grip'), ('SI "Cobra tactical" tactical grip'), ('Magpul M-LOK AFG Tactical grip'), ('Hera Arms CQR tactical grip'), 
        ('Fortis Shift tactical grip'), ('Magpul AFG grip'), ('Magpul RVG grip'), ('SE-5 Express Grip'), ('Tango Down Stubby BGV-MK46K tactical grip'), 
        ('Viking Tactical UVG Tactical grip'), ('Zenit RK-0 Foregrip'), ('Zenit RK-1 Foregrip'), ('Zenit RK-1 Foregrip on B-25U mount'), ('Zenit RK-2 Foregrip'), 
@@ -543,6 +588,7 @@ VALUES ('KAC Vertical pistol grip'), ('BCM MOD.3 Tactical grip'), ('SI "Cobra ta
 
 -- Tacticals
 INSERT INTO tacticals (tactical_name)
+VALUES ('LA-5 tac device');
 VALUES ('Armytek Predator Pro v3 XHP35 HI Flashlight'), ('Ultrafire WF-501B Flashlight'), ('Zenit Perst-3 tactical device'), ('Zenit 2IRS Klesch flashlight + laser designator'),
        ('Zenit 2P Klesch flashlight + laser designator'), ('Zenit 2U Klesch tactical flashlight'), ('AN/PEQ-15 tactical device'), ('Glock Tactical GL21 flashlight with laser'),
        ('Holosun LS321 Tactical device'), ('LA-5 tactical device'), ('LAS/TAC 2 tactical flashlight'), ('Surefire XC1 tactical flashlight'), ('X400 tactical flashlight'), 
@@ -550,6 +596,7 @@ VALUES ('Armytek Predator Pro v3 XHP35 HI Flashlight'), ('Ultrafire WF-501B Flas
 
 -- Ammo Types
 INSERT INTO ammo_types (ammo_name)
+VALUES ('5.56mm');
 VALUES ('7.62x25mm Tokarev'), ('9x18mm Makarov'), ('9x19mm Parabellum'), ('9x21mm Gyurza'), ('.45 ACP'), ('4.6x30mm HK'), ('5.7x28mm FN'), ('5.45x39mm'), ('5.56x45mm NATO'), 
        ('.300 Blackout'), ('7.62x39mm'), ('7.62x51mm NATO'), ('7.62x54mmR'), ('.338 Lapua Magnum'), ('9x39mm'), ('.366 TKM'), ('12.7x55mm STs-130'), ('12x70mm'), ('20x70mm'), 
        ('40x46 mm');
@@ -558,66 +605,90 @@ VALUES ('7.62x25mm Tokarev'), ('9x18mm Makarov'), ('9x19mm Parabellum'), ('9x21m
 --Stock Compatibility
 INSERT INTO stock_compatibility (gun_id, stock_id)
 -- ADAR 2-15 .223 Carbine
-VALUES (1, 2), (1, 3);
+VALUES (1, 1);
 -- Gun2
-VALUES (2, 1), (2, 3);
+--VALUES (2, 1), (2, 3);
 
 
 --Buffer Tube Compatibility
 INSERT INTO buffer_tube_compatibility (stock_id, buffer_tube_id)
 -- Stock name
-VALUES (1, 2);
+VALUES (1, 1);
 
 
 --Pistol Grip Compatibility
 INSERT INTO pistol_grip_compatibility (stock_id, pistol_grip_id)
 -- Stock name
-VALUES (1, 2);
+VALUES (1, 1);
 
 
 --Hand Guard Compatibility
-INSERT INTO hand_guard_compatibility (stock_id, hand_guard_id)
+INSERT INTO hand_guard_compatibility (gun_id, hand_guard_id)
 -- Stock name
-VALUES (1, 2);
+VALUES (1, 1);
+
+
+--Receiver Compatibility
+INSERT INTO receiver_compatibility (gun_id, receiver_id)
+-- Receiver name
+VALUES (1, 1);
+
+
+--Foregrip Compatibility
+INSERT INTO fore_grip_compatibility (hand_guard_id, fore_grip_id)
+-- Hand Guard
+VALUES (1, 1);
+
+
+--Tactical Compatibility
+INSERT INTO tactical_compatibility (gun_id, tactical_id)
+-- ADAR 2-15 .223 Carbine
+VALUES (1, 1);
 
 
 --Sight Compatibility
-INSERT INTO sight_compatibility (gun_id, sight_id)
--- ADAR 2-15 .223 Carbine
-VALUES (1, 2);
+INSERT INTO sight_compatibility (receiver_id, sight_id)
+-- Receiver
+VALUES (1, 1);
+
+
+--Sight Mount Compatibility
+INSERT INTO sight_mount_compatibility (sight_id, mount_id)
+-- Sight
+VALUES (2, 2);
 
 
 --Magazine Compatibility
 INSERT INTO magazine_compatibility (gun_id, magazine_id)
 -- ADAR 2-15 .223 Carbine
-VALUES (1, 2);
+VALUES (1, 1);
 
 
 --Barrel Compatibility
 INSERT INTO barrel_compatibility (gun_id, barrel_id)
 -- ADAR 2-15 .223 Carbine
-VALUES (1, 2);
+VALUES (1, 1);
 
 
 --Muzzle Compatibility
 INSERT INTO muzzle_compatibility (barrel_id, muzzle_id)
 -- barrel name
-VALUES (1, 2);
+VALUES (2, 1);
 
 
 --Muzzle Adaptor Compatibility
 INSERT INTO muzzle_adaptor_compatibility (muzzle_id, adaptor_id)
 -- Muzzle name
-VALUES (1, 2);
+VALUES (1, 1);
 
 
 --Bolt Compatibility
 INSERT INTO bolt_compatibility (gun_id, bolt_id)
 -- ADAR 2-15 .223 Carbine
-VALUES (1, 2);
+VALUES (1, 1);
 
 
 --Ammo Type Compatibility
 INSERT INTO ammo_type_compatibility (gun_id, ammo_id)
 -- ADAR 2-15 .223 Carbine
-VALUES (1, 2);
+VALUES (1, 1);
