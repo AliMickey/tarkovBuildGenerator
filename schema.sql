@@ -285,35 +285,178 @@ VALUES ('ADAR 2-15 wooden stock', false, false, true), ('APB detachable wire sto
 --        ('Tapco INTRAFUSE Stock for SKS'), ('TOZ stock for TOZ-106'), ('Troy M7A1 PDW stock'), ('Troy S.A.S.S. Chassis stock for M14'), ('TSNIITochMash AS VAL stock'), 
 --        ('TSNIITochMash VSS Vintorez stock'), ('UBR GEN2 stock'), ('VPO-101 SVD style stock'), ('Wired stock for KS-23M'), ('Wooden stock 56-A-231 Sb.5'), 
 --        ('Wooden stock for KS-23'), ('Wooden stock for Molot OP-SKS'), ('Wooden stock for MP-133/153'), ('Zenit PT-1 "Klassika" stock'), 
---        ('Zenit PT-3 "Klassika" stock'), ('Zhukov-S for AK');
+--        ('Zenit PT-3 "Klassika" stock'), ('Zhukov-S for AK'), ('Hera Arms CQR pistol grip-stock');
+
+--        AS VAL Pistol grip-buffer tube
 
 -- Buffer Tubes
 INSERT INTO buffer_tubes (buffer_tube_name)
-VALUES ('1');
+VALUES ('ADAR buffer tube'), ('AK74/AK100 PT Lock'), ('AKM/AK-74 PT Lock'), ('AKS-74/AKS-74U PT Lock'), ('Buffer Tube adapter for SA-58'), 
+       ('Buffer tube side folder adapter for M700'), ('CAA AKTS AK-74 Buffer Tube for AK and compatible'), ('CAA AKTS AK-74 Buffer Tube for AK and compatible (foldable)'),
+       ('COLT "A2" buffer tube'), ('Colt buffer tube'), ('Fab Defence buffer tube for AGR-870'), ('HK "Enhanced Tube" buffer tube'), ('Izhmash RPK-16 buffer tube'), 
+       ('KRISS Vector non folding stock adapter'), ('LEO stock adapter for M870'), ('LEO stock adapter gen.1 for M590'), ('ME adapter for AK'), 
+       ('Mesa Tactical Crosshair Hydraulic buffer tube'), ('SI Advanced receiver extension buffer tube'), ('SIG retractable stock pipe adapter'), ('STM Arms buffer tube'), 
+       ('Tapco buffer tube');
 
 -- Pistol Grips
 INSERT INTO pistol_grips (pistol_grip_name)
-VALUES ('1');
+VALUES ('US Palm pistol grip for AK'), ('HK Grip V.2 pistol grip for AR-15 based systems'), ('Izhmash SVDS pistol grip'), ('	Desert Tech pistol grip for MDR'), 
+       ('Razor Arms TT rubber grips'), ('Hogue like TT rubber grips'), ('Wooden Sig Sauer Elite pistol grip for P226'), ('Emperor scorpion Sig Sauer pistol grip for P226'), 
+       ('Hogue Chain link pistol grip for P226'), ('Axelson Tacical MK.25 pistol grip for P226'), ('PM-Laser TT-206 side grips with LAM'), 
+       ('Fab Defence AGR-870 pistol grip for Remington-870'), ('Izhmash AK-12 regular pistol grip'), ('Tacfire pistol grip for Mosin rifle'), 
+       ('HK "Battle Grip" pistol grip for AR-15 based systems'), ('HK Battle Grip with Beavertail pistol grip for AR-15 based systems'), 
+       ('Fab AG FAL pistol grip for SA-58'), ('Regular "DS Arms" pistol grip for SA-58'), ('TAPCO SAW-Style black pistol grip for SA-58'), 
+       ('Rubber with finger grooves pistol grip for P226'), ('Magpul MOE pistol grip for AK'), ('M14ALCS(MOD. 0) pistol grip for M14'), ('	PP-19-01 Izhmash pistol grip'), 
+       ('TOZ 002 pistol grip for TOZ-106'), ('Polymer Izhmekh pistol grip for MP-443'), ('Sig Sauer pistol grip for P226'), ('TSNIITOCHMASH bakelite PB side grips'), 
+       ('Fancy TT side grips'), ('Standard TT side grips'), ('Izhmash AK bakelite pistol grip (6P4 Sb.8V)'), ('Izhmash AK polymer pistol grip (6P1 Sb.8)'), 
+       ('Izhmash AKM bakelite pistol grip'), ('Wooden Izhmash AKM pistol grip for AK'), ('Izhmash AK-74 Textolite pistol grip (6P4 Sb.9)'), 
+       ('Molot AK bakelite pistol grip'), ('TAPCO SAW-Style pistol grip for AK'), ('Zenit RK-3 AK pistol grip'), ('APS bakelite side-pieces'), ('Colt A2 AR-15 pistol grip'), 
+       ('DI ECS FDE pistol grip for AR-15 based systems'), ('Hogue OverMolded Rubber Grip'), ('MIAD Pistol grip for AR-15 based systems'), ('Magpul MOE AR-15 pistol grip'), 
+       ('Naroh Arms GRAL-S Pistol grip for AR-15-compatible weapons'), ('Stark AR Rifle Grip for AR-15-compatible weapons'), ('Pistol grip SIG MPX'), 
+       ('ZMZ Polymer pistol grip for PP-91'), ('AS VAL Pistol grip'), ('Pachmayr tactical rubber grip'), ('Skeletonized AR-15 pistol grip'), 
+       ('TAPCO SAW-Style pistol grip for SKS INTRAFUSE Kit'), ('Polymer pistol grip for M9A3'), ('Hera Arms HG-15 pistol grip for AR-15 based systems'), 
+       ('Magpul Pistol Grip for Pro 700 Kit'), ('SI Enhanced pistol grip for AK'), ('KGB MG-47 pistol grip for AK'), ('Fab Defence AG-58 pistol grip for VZ-58'), 
+       ('HK Ergo PSG-1 style pistol grip for AR-15 based systems'), ('Orsis T-5000 Pistol Grip'), ('Standard polymerpistol grip for M1911A1'), 
+       ('Pachmayr "American legend grip 423 for M1911A1'), ('Polymer pistol grip for KS-23M'), ('Standart polymerpistol grip for M45A1'), 
+       ('Aeroknox scorpius pistol grip for AK'), ('SIG MCX pistol grip'), ('DLG-123 pistol grip for AR-15 based systems');
 
 -- Hand Guards
 INSERT INTO hand_guards (hand_guard_name)
-VALUES ('1');
+VALUES ('Lancer OEM 14 inch M-LOK foregrip for MPX'), ('Troy Industries 13" M-LOK foregrip for 416A5'), ('Strike Industries CRUX 15" M-LOK foregrip for 416A5'), 
+       ('Desert Tech foregrip for MDR'), ('HK MRS 14" keymod foregrip for 416A5'), ('Zenit B-10 AK Handguard'), ('SAI 10" QD Rail foregrip for AR15'), 
+       ('Midwest 14 inch M-LOK foregrip for MPX'), ('Midwest 10.5 inch M-LOK foregrip for MPX'), ('Midwest 4.5 inch M-LOK foregrip for MPX'), 
+       ('Stngr Vypr 10" M-LOK foregrip for AR15'), ('Daniel Defence RIS II 12.25 foregrip for AR-15-compatible systems'), 
+       ('Magpul MOE SL carbine length M-LOK foregrip for AR15'), ('Daniel Defence FDE RIS II FSP 9.5 foregrip for AR-15-compatible systems'), ('Polymer SVDS handguard'), 
+       ('SAI 14.5" QD Rail foregrip for AR15'), ('Midwest 6.5 inch M-LOK foregrip for MPX'), ('Midwest 9" M-LOK foregrip for 416A5'), ('Magpul Zhukov-U HAND GUARD for AK'), 
+       ('Magpul MOE SL mid length M-LOK foregrip for AR15'), ('Midwest 13.5" M-LOK foregrip for 416A5'), ('Izhmash RPK-16 regular handguard'), 
+       ('ADAR 2-15 wooden stock for AR-15 and compatibles'), ('VLTOR CMRD Keymod handguard for AK'), ('HK quadrail handguard for 416-compatible systems'), 
+       ('HK quadrail handguard with a flip-up sight for 416-compatible systems'), ('HK extended quadrail handguard for 416-compatible systems'), 
+       ('DS Arms Quad Rail Full Length foregrip for SA-58'), ('Vltor CASV FAS foregrip for FAL'), ('Vltor CASV FAL foregrip for FAL'), 
+       ('Original Austrian foregrip for a FAL'), ('DSA Belgian style foregrip for a FAL'), ('Aim sport Universal M-LOK foregrip for FAL'), 
+       ('Aim sport Universal keymod foregrip for FAL'), ('Hexagon handguard for AK'), ('DS Arms quad rail foregrip for SA-58'), 
+       ('Handguard MK 10 for use with AR-15 and compatible'), ('Strike industries TRAX 1 foregrip'), ('Strike industries TRAX 2'), 
+       ('Colt M4 Length handguard for AR-15 and compatibles'), ('XRSU47SU Tactical Handguard for AKS-74U'), ('MP5 TL-99 Aluminum handguard'), 
+       ('MP5 Wide Tropical Polymer handguard'), ('Wooden AK-74 handguard (6P20 Sb.6)'), ('Magpul MOE AKM HAND GUARD for AK'), ('LOBAEV Arms DVL-10 M2 handguard'), 
+       ('Wooden AKM / VPO-209 handguard'), ('Wooden AK-74 handguard (6P1 Sb.6-1)'), ('Wooden VPO-136 handguard'), ('Izhmekh MP-153 Polymer stock'), 
+       ('Krebs Custom UFM Keymod System handguard for AKM'), ('MP5SD Polymer handguard'), ('Izhmekh MP-133 Beechwood forestock'), ('B-11 AKS-74U Handguard'), 
+       ('Handguard SIG MPX Gen. 1 for MPX'), ('Remington Arms handguard for a R11 RSASS'), ('Handguard War Sport LVOA-C blk. for use with AR-15 and compatible'), 
+       ('Handguard War Sport LVOA-S blk. for use with AR-15 and compatible'), ('Daniel Defence RIS II 9.5 foregrip for AR-15-compatible systems'), 
+       ('SOK-12 aluminum handguard MTU002 Long Top'), ('Polymer AK-74 foregrip (6P20 Sb.9)'), ('SOK-12 polymer handguard Sb.7-1'), 
+       ('SOK-12 aluminum handguard MTU002 Short Top'), ('CAA RS47 foregrip for AK-compatible systems'), ('	B-10M foregrip and rail mount B-19'), 
+       ('Wooden AKS-74U Handguard (6P26 Sb.6)'), ("Knight's Armament KAC RIS handguard for AR-15 and compatibles"), ('Custom plastic MP-133 forestock with mounts'), 
+       ('Fab Defence PR870 forestock'), ('Magpul MOE M870 forestock'), ('Speedfeed short M870 forestock'), ('Polymer AK-100 series foregrip'), ('Polymer ASh-12 foregrip'), 
+       ('A*B Arms MOD X Gen.3 keymod handguard for M700'), ('5.45 Design "Aggressor" handguard for AK'), ('Strike Industries Viper carbine length M-LOK foregrip for AR-15'), 
+       ('Noveske SWS N6 10.5 inch foregrip for AR-10-compatible systems'), ('Noveske SWS N6 Split handguard for AR-10-compatible systems'), ('CAA HX-5 MP5 handguard'), 
+       ('URX 3.1 10.75" handguard for AR15'), ('URX 3 8" handguard for AR15'), ('Alfa Arms Goliaf AKS-74U Handguard'), ('PTR Tri-Rail MP5 handguard'), 
+       ('TDI AKM-L handguard for AK'), ('Wooden CAF WASR 10-63 handguard'), ('MP5k Polymer handguard'), ('Lone Star Ion Lite handguard for AR-15 and compatible'), 
+       ('URX-4 handguard for AR-10 and compatible'), ('Orsis handguard for T-5000'), ('SAG MK1 Freefloat Chassis for SVD'), ('CAA XRS DRG for SVD'), 
+       ('Izhmash modern handguard for SVD'), ('Geissele SMR Mk.16 9.5 inch M-LOK handguard for AR-15'), ('Geissele SMR Mk.16 13.5 inch M-LOK handguard for AR-15'), 
+       ('Speedfeed short M590A1 forestock'), ('Magpul MOE M590 forestock'), ('	B-30 foregrip and rail mount B-31С'), ('TOZ KS-23M forestock'), 
+       ('Kel-Tec RFB regular handguard'), ('Lancer LCH-7 12.5 inch M-LOK handguard for AR-10'), ('SOK-12 aluminum handguard Bravo-18'), 
+       ('X47 Tactical Handguard for AK and compatible'), ('SIG 12" keymod foregrip for MCX'), ('SIG 8" keymod foregrip for MCX'), 
+       ('Sword int. 18 inch handguard for Mk-18'), ('STM 9 inch M-LOK handguard for AR-15'), ('STM 12 inch M-LOK handguard for AR-15'), 
+       ('STM 15 inch M-LOK handguard for AR-15');
 
 -- Sights
 INSERT INTO sights (sight_name)
-VALUES ('1');
+VALUES ('ELCAN SpecterDR 1x/4x Scope'), ('Leupold Mark 4 HAMR 4x24mm DeltaPoint hybrid assault scope'), ('Primary Arms Compact prism scope 2.5x'), ('Sig BRAVO4 4X30 Scope'), 
+       ('Trijicon ACOG 3.5x35 scope'), ('Trijicon ACOG TA01NSN 4x32 scope'), ('Valday PS-320 1x/6x Scope'), ('Monstrum Compact prism scope 2x32'), 
+       ('Aimpoint COMP M4 reflex sight'), ('Cobra EKP-8-02 reflex sight'), ('Cobra EKP-8-18 reflex sight'), ('Eotech 553 holographic sight'), 
+       ('Eotech EXPS3 holographic sight'), ('Eotech HHS-1 sight'), ('Eotech XPS3-0 holographic sight'), ('Eotech XPS3-2 holographic sight'), ('Holosun HS401G5 reflex sight'), 
+       ('OKP-7 reflex sight'), ('OKP-7 reflex sight (Dovetail)'), ('VOMZ Pilad P1X42 "WEAVER" reflex sight'), ('Valday 1P87 holographic sight'), 
+       ('Vortex Razor AMG UH-1 holographic sight'), ('Walther MRS reflex sight'), ('Trijicon SRS-02 reflex sight'), ('Belomo PK-06 reflex sight'), 
+       ('Aimpoint Micro T-1 reflex sight'), ('Burris FastFire 3 Reflex Sight'), ('Leupold DeltaPoint Reflex Sight'), ('Trijicon RMR'), ('Sig Sauer Romeo 4 reflex sight'), 
+       ('PU 3.5x riflescope'), ('Nightforce ATACR 7-35x56 riflescope'), ('Leupold Mark 4 LR 6.5-20x50 riflescope'), ('Optical scope March Tactical 3-24x42 FFP'), 
+       ('Hensoldt FF 4-16x56 scope'), ('Zenit-Belomo PSO 1 4x24 scope'), ('Zenit-Belomo PSO 1M2 4x24 scope'), ('Zenit-Belomo PSO 1M2-1 4x24 scope'), 
+       ('EOtech Vudu 1-6 riflescope'), ('Burris FullField TAC 30 1-4x24 riflescope'), ('NPZ USP-1 4x scope'), ('KMZ 1P59 3-10x riflescope'), ('KMZ 1P69 3-10x riflescope'), 
+       ('VOMZ Pilad 4x32 riflescope'), ('NcSTAR ADO P4 Sniper 3-9x42 riflescope'), ('Vulcan MG night scope 3.5x'), ('Trijicon REAP-IR thermal riflescope'), 
+       ('NSPU-M night Scope'), ('FLIR RS-32 2.25-9x 35mm 60Hz thermal riflescope');
 
 -- Sight Mounts
 INSERT INTO sight_mounts (mount_name)
-VALUES ('1');
+VALUES (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), ('');
 
 -- Magazine
 INSERT INTO magazines (magazine_name)
-VALUES ('1');
+VALUES ('F5 MPX Drum mag 50-round 9x19 magazine'), ('TROY Battlemag 5.56x45 STANAG 30-round magazine'), ('ProMag AALVX 35 7.62x39 35-round SKS magazine'), 
+       ('MPX with TTI Base pad +11 41-round 9x19 magazine'), ('7.62x51 metal magazine for VPO-101 and compatibles, 10-round capacity'), 
+       ('5-shot MC 20-01 Sb.3 20ga magazine for TOZ-106'), ('20-round SVD 7.62x54 magazine'), ('7.62x51 metal magazine for VPO-101 and compatibles, 5-round capacity'), 
+       ('ProMag AK-A-16 73-round 7.62x39 magazine for AKM and compatibles'), ('P226 Extended magazine 9x19'), ('HK PM Gen.2 5.56x45 STANAG 30-round magazine'), 
+       ('10 rnds. SKS internal box magazine 7.62x39'), ('10-round SVD 7.62x54 magazine'), ('HK Polymer mag 30 5.56x45 STANAG 30-round magazine'), 
+       ('100-round MAG5-100 5.56x45 STANAG magazine'), ('Standard MPX 20-round 9x19 magazine'), ('PUFGUN SG-919 20 20-round 9x19 magazine for PP-19-01'), 
+       ('PUFGUN SG-919 30 30-round 9x19 magazine for PP-19-01'), ('Arsenal CWP 30-round 5.56x45 magazine for SLR-106 and compatible weapons'), 
+       ('HK Steel Maritime 5.56x45 STANAG 30-round magazine'), ('5-round .308 M700 magazine'), ('10-round .308 M700 magazine'), 
+       ('95-round 5.45x39 magazine for RPK-16 and compatibles'), ('30-round 5.45x39 magazine for AK-12 and compatibles'), 
+       ('7.62x54r ProMag OPFOR for Archangel Mosin rifle kit, 10-round capacity'), ('British FAL/L1A1 7.62x51 30 rnd magazine'), ('X-14 M14 50 round 7.62x51 magazine'), 
+       ('M14 30 round 7.62x51 magazine'), ('Regular 4rnd magazine for Mosin rifle'), ('PMAG GEN M3 30 5.56x45 STANAG 30-round magazine'), 
+       ('6L29 30-round 5.56x45 magazine for AK-101 and compatible weapons'), ('30-round 7.62x39 magazine for AK-103 and compatible weapons'), ('M1A 20 round 7.62x51 magazine'), 
+       ('PMAG GEN M3 10 5.56x45 STANAG 10-round magazine'), ('Pmag 30 AK74 GEN M3 5.45x39 magazine for AK and compatibles, 30-round capacity'), 
+       ('30-round SR3M.130 9x39 SR3M magazine'), ('SAI-02 10-round 12x76 magazine for SOK-12 and compatible weapons'), ('8-shell MP-133x8 12ga magazine'), 
+       ('Izhmash 6L10 7.62x39 magazine for AK and compatibles, 30-round capacity'), ('7.62x39 ribbed metal magazine for AK and compatibles, 10-round capacity'), 
+       ('SR1-MP magazine'), ('P226 magazine'), ('20-round 6L25 9x39 VSS magazine'), ('30-round 6L23 5.45x39 magazine for AK-74 and compatibles'), 
+       ('45-round 6L26 5.45x39 magazine for AK-74 and compatibles'), ('10-round .308 DVL-10 magazine'), ('MP-443 9x19 18-round magazine'), 
+       ('Standard MP5 30-round 9x19 magazine'), ('Glock 9x19 magazine'), ('Standard MPX 30-round 9x19 magazine'), ('6-shell MP-133x6 12ga magazine'), ('MP-153 forend cap'), 
+       ('X Products X-5 MP5 50-round 9x19 magazine'), ('MP-153 5-rd magazine extension'), ('MP-153 6-rd magazine extension'), ('MP-153 7-rd magazine extension'), 
+       ('MP-153 8-rd magazine extension'), ('60-round 6L31 5.45x39 magazine for AK-74 and compatibles'), 
+       ('Palm US AK30 7.62x39 magazine for AK and compatibles, 30-round capacity'), ('TT-105 7.62x25 TT Magazine'), ('PM/PPSH 9x18PM 84-round drum mag for PM'), 
+       ('90-93 9x18PM Magazine, for 8 PM rounds'), ('Sb.5 5-round 12/76 magazine for SOK-12 and compatible weapons'), ('ProMag SKS-A5 7.62x39 20-round SKS magazine'), 
+       ('6L20 30-round 5.45x39 magazine for AK-74 and compatible weapons'), ('10-round 6L24 9x39 VSS magazine'), 
+       ('6L18 45-round 5.45x39 magazine for AK-74 and compatible weapons'), ('Izhmash AK magazine (issued ‘55 or later) 30-round for 7.62x39 AK and compatibles'), 
+       ('Izhmash 7.62x39 AKMS aluminium magazine for AK and compatibles, 30-round capacity'), ('10-round Saiga 545 5.45x39 magazine for AK-74 and compatibles'), 
+       ('10-round polymer magazine 7.62x54R for SV-98'), ('Molot 6P2.Sb-11 7.62x39 magazine for AK and compatibles, 40-round capacity'), 
+       ('PMAG 30 AK/AKM GEN M3 7.62x39 magazine for AK and compatibles, 30-round capacity'), ('Standard APS 9x18PM 20-round magazine'), ('10-round Izh.9x19 Sb.7 magazine'), 
+       ('Standard PP-19-01 30-round 9x19 magazine'), ('Standard 9x18PM 20-round magazine for PP-91'), ('Standard 9x18PM 30-round magazine for PP-91'), 
+       ('Colt AR-15 5.56x45 STANAG 30-round magazine'), ('Magpul PMAG D-60 5.56x45 60-round magazine'), ('PMAG GEN M3 20 5.56x45 STANAG 20-round magazine'), 
+       ('40-round PMAG GEN M3 40 5.56x45 STANAG magazine'), ('PMAG GEN M3 W 30 5.56x45 STANAG 30-round magazine'), ('60-round MAG5-60 5.56x45 STANAG magazine'), 
+       ('PMAG SR/LR GEN M3 20 7.62x51 20 rnd'), ('2-shot MC 20-01 Sb.3 20ga magazine for TOZ-106'), ('4-shot MC 20-01 Sb.3 20ga magazine for TOZ-106'), 
+       ('10-shell M870x10 12ga magazine'), ('7-shell M870x7 12ga magazine'), ('Pmag GL9 polymer magazine'), ('SGMT Drum mag for Glock 9x19, 50 rounds capacity'), 
+       ('4-shell M870 12ga magazine cap'), ('"Big Stick" 9x19 magazine for Glock 9x19'), ('FAL/SA-58 7.62x51 20 rnd'), ('FAL/SA-58 7.62x51 30 rnd'), 
+       ('FAL/SA-58 7.62x51 10 rnd'), ('X-FAL FAL/SA-58 7.62x51 50 rnd magazine'), ('FAL/SA-58 "MMW" 7.62x51 20 rnd plastic mag'), 
+       ('Bakelite 7.62x39 magazine for AK and compatibles, 40-round capacity'), ('Izhmash 7.62x39 AK aluminium magazine for AK and compatibles, 10-round capacity'), 
+       ('Standard MP7 20-round 4.6x30 magazine'), ('Standard MP7 30-round 4.6x30 magazine'), ('Standard MP7 40-round 4.6x30 magazine'), ('M9A3 9x19 17-round magazine'), 
+       ('12.7x55 magazine for ASh-12, 10-round capacity'), ('12.7x55 magazine for ASh-12, 20-round capacity'), ('X-47 AK 7.62x39 50 rnd magazine'), 
+       ('Molot magazine for AK and compatibles, 75-round capacity'), ('FN magazine for P90, 50-round capacity'), ('Magpul PMAG .308 AC 5-round M700 magazine'), 
+       ('Promag AA-70 10-round .308 M700 magazine'), ('Promag AA-70 20-round .308 M700 magazine'), 
+       ('MaxRounds Powermag 20-round 12/76 magazine for SOK-12 and compatible weapons'), ('5-round .308 AICS M700 magazine'), ('10-round .308 AICS M700 magazine'), 
+       ('12-round .308 MDT AICS M700 magazine'), ('Magpul PMAG .308 AC 10-round M700 magazine'), ('Standard MP5 20-round 9x19 magazine'), 
+       ('Five-seveN 20-Round 5.7x28 magazine'), ('Standard 9x19 15-round magazine for MP9'), ('Standard 9x19 20-round magazine for MP9'), 
+       ('Standard 9x19 25-round magazine for MP9'), ('Standard 9x19 30-round magazine for MP9'), ('KAC Steel 10 7.62x51 10 rnd'), ('KAC Steel 20 7.62x51 20 rnd'), 
+       ('Metal magazine for VPO-215 and compatibles, .366 TKM 4-round capacity'), ('5-round .308 T-5000 magazine'), ('35-round 7.62x25 magazine for PPSH-41'), 
+       ('71-round 7.62x25 magazine for PPSH-41'), ('M1911 .45 ACP 7-round magazine'), ('Mec-Gar .45 ACP 11-round magazine for M1911A1'), ('8-shell M590A1 12ga magazine cap'), 
+       ('3-shell KS-23M 23mm magazine cap'), ('M45A1 .45 ACP 7-round magazine'), ('Glock .45 ACP magazine'), ('Magex G30 magazine for Glock .45 ACP'), 
+       ('Standard UMP 25-round .45 ACP magazine'), ('Sword Int. Mk-18 .338 LM 10-round magazine'), ('PL-15 9x19 magazine, 16-round capacity');
 
 -- Barrels
 INSERT INTO barrels (barrel_name)
-VALUES ('1');
+VALUES ('10.6" barrel for 416A5 and compatible 5.56x45'), ('10.5" 9x19 barrel for MPX'), ('6.5" 9x19 barrel for MPX'), ('406mm barrel for MDR and compatible 5.56x45'), 
+       ('22" barrel for a SVDS 7.62x54'), ('4.5" 9x19 barrel for MPX'), ('14" 9x19 barrel for MPX'), ('406mm Molot barrel for AR-15 and compatible 5.56x45'), 
+       ('	20" barrel for a Remington M700 7.62x51 NATO'), ('26" barrel for a Remington M700 7.62x51 NATO'), ('Sawn off 200mm Mosin barrel'), ('Sawn off 220mm Mosin barrel'), 
+       ('Regular 514mm Mosin carbine barrel'), ('15" barrel for RPK-16 and compatible 5.45x39'), ('22" barrel for RPK-16 and compatible 5.45x39'), 
+       ('11" barrel for 416A5 and compatible 5.56x45'), ('14.5" barrel for 416A5 and compatible 5.56x45'), ('16.5" barrel for 416A5 and compatible 5.56x45'), 
+       ('20" barrel for 416A5 and compatible 5.56x45'), ('11" barrel for SA-58 7.62x51'), ('16" barrel for SA-58 7.62x51'), ('21" barrel for SA-58 7.62x51'), 
+       ('22" barrel for a M1A 7.62x51 NATO'), ('Regular 730mm Mosin barrel'), ('16" barrel for a M1A 7.62x51 NATO'), ('18" barrel for a AR-10 and compatible 7.62x51 NATO'), 
+       ('510mm barrel for MP-133 12ga'), ('500mm .308 barrel for DVL-10'), ('116mm 7.62x25 TT barrel'), ('116mm 7.62x25 TT gilded barrel'), 
+       ('Homespun 121mm 7.62x25 TT barrel with threading'), ('Threaded barrel for P226 9x19'), ('260mm barrel for AR-15 and compatible 5.56x45'), 
+       ('370mm barrel for AR-15 and compatible 5.56x45'), ('165 mm 9x19 barrel for MPX-SD'), ('203 mm 9x19 barrel for MPX'), ('510mm barrel for MP-133 12ga shotgun with rib'), 
+       ('540mm barrel for MP-133 12ga shotgun'), ('540mm barrel for MR-133 12ga shotgun with rib'), ('610mm barrel for MP-133 12ga shotgun'), 
+       ('610mm barrel for MP-133 12ga shotgun with rib'), ('660mm barrel for MR-133 12ga shotgun'), ('660mm barrel for MP-133 12ga shotgun with rib'), 
+       ('710mm barrel for MP-133 12ga shotgun'), ('710mm barrel for MR-133 12ga shotgun with rib'), ('750mm barrel for MP-133 12ga shotgun'), 
+       ('750mm barrel for MP-133 12ga shotgun with rib'), ('610 mm barrel for MP-153 12ga shotgun'), ('660 mm barrel for MP-153 12ga shotgun'), 
+       ('750 mm barrel for MP-153 12ga shotgun'), ('112mm barrel for P226 9x19'), ('660mm .308 barrel for DVL-10 M2'), ('22" barrel for a AR-10 and compatible 7.62x51 NATO'),
+       ('710 mm barrel for MP-153 12ga shotgun'), ('Threaded barrel for Glock 9x19 manufactured by Lone Wolf.'), ('660mm vent rib barrel for M870 12ga'), 
+       ('508mm barrel for M870 12ga'), ('Basic barrel for Glock 17 9x19'), ('Cut off 325mm barrel for M870 12ga'), ('355mm barrel for M870 12ga'), 
+       ('508mm barrel for M870 12ga with a fixed sight'), ('Threaded barrel for Glock 9x19 manufactured by Double Diamond'), ('Barrel with compensator for Glock 17 9x19'), 
+       ('Threaded barrel for Glock 9x19 manufactured by Salient Arms'), ('Barrel with compensator for Glock 18C 9x19'), ('Threaded barrel for M9A3 9x19'), 
+       ('10.5" barrel for P90 5.7x28'), ('16" barrel for P90 5.7x28'), ('26" stainless steel barrel for a Remington M700 7.62x51 NATO'), 
+       ('20" stainless steel barrel for a Remington M700 7.62x51 NATO'), ('Barrel for Five-seveN 5.7x28'), ('Threaded barrel for Five-seveN 5.7x28'), 
+       ('18" barrel for AR-15 and compatible 5.56x45'), ('20" barrel for AR-15 and compatible 5.56x45'), ('660mm .308 barrel for T-5000'), 
+       ('20" barrel for SR-25 and compatible 7.62x51'), ('16" barrel for SR-25 and compatible 7.62x51'), ('23" barrel for a VPO-215 .366TKM'), 
+       ('16 inch .308 barrel for MDR and compatible'), ('Standard barrel for M1911A1 .45 ACP'), ('10.6" barrel for PPSH-41 7.62x25'), ('20" barrel for M590 12ga'), 
+       ('510mm barrel for KS-23 23x75mm'), ('700mm barrel for KS-23 23x75mm'), ('18" barrel for RFB 7.62x51'), ('National match barrel for M1911 .45 ACP'), 
+       ('Threaded barrel for M1911A1 .45 ACP'), ('171mm barrel for MCX and compatible .300 BLK'), ('229mm barrel for MCX and compatible .300 BLK'), 
+       ('5" barrel for Vector 9x19'), ('6" barrel for Vector 9x19'), ('5" Vector barrel .45 ACP'), ('6" Vector barrel .45 ACP'), ('8" barrel for UMP .45 ACP'), 
+       ('24" barrel for Mk-18 .338 LM'), ('Regular barrel for PL-15 9x19'), ('	Threaded barrel for PL-15'), ('10.5" barrel for STM-9 9x19'), ('12" barrel for STM-9 9x19'), 
+       ('14" barrel for STM-9 9x19'), ('16" barrel for STM-9 9x19');
 
 -- Muzzles
 INSERT INTO muzzles (muzzle_name, adaptor_required)
@@ -321,23 +464,23 @@ VALUES ('1', true);
 
 -- Muzzle Adaptors
 INSERT INTO muzzle_adaptors (adaptor_name)
-VALUES ('1');
+VALUES (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), ('');
 
 -- Bolts
 INSERT INTO bolts (bolt_name)
-VALUES ('1');
+VALUES (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), ('');
 
 -- Fore Grips
 INSERT INTO fore_grips (fore_grip_name)
-VALUES ('1');
+VALUES (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), ('');
 
 -- Tacticals
 INSERT INTO tacticals (tactical_name)
-VALUES ('1');
+VALUES (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), ('');
 
 -- Ammo Types
 INSERT INTO ammo_types (ammo_name)
-VALUES ('1');
+VALUES (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), ('');
 
 
 --Stock Compatibility
