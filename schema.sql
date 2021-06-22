@@ -296,7 +296,7 @@ VALUES ('ADAR buffer tube'), ('AK74/AK100 PT Lock'), ('AKM/AK-74 PT Lock'), ('AK
        ('COLT "A2" buffer tube'), ('Colt buffer tube'), ('Fab Defence buffer tube for AGR-870'), ('HK "Enhanced Tube" buffer tube'), ('Izhmash RPK-16 buffer tube'), 
        ('KRISS Vector non folding stock adapter'), ('LEO stock adapter for M870'), ('LEO stock adapter gen.1 for M590'), ('ME adapter for AK'), 
        ('Mesa Tactical Crosshair Hydraulic buffer tube'), ('SI Advanced receiver extension buffer tube'), ('SIG retractable stock pipe adapter'), ('STM Arms buffer tube'), 
-       ('Tapco buffer tube');
+       ('Tapco buffer tube'), ('Stock adapter Tactica Tula 12003 for MP-133/153');
 
 -- Pistol Grips
 INSERT INTO pistol_grips (pistol_grip_name)
@@ -374,7 +374,13 @@ VALUES ('ELCAN SpecterDR 1x/4x Scope'), ('Leupold Mark 4 HAMR 4x24mm DeltaPoint 
 
 -- Sight Mounts
 INSERT INTO sight_mounts (mount_name)
-VALUES (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), ('');
+VALUES ('25 mm mount ring'), ('25mm rings made by UTG'), ('30mm ring-mount AR- P.E.P.R. made by Burris'), ('30mm ring-mount made by JP'), 
+       ('30mm ring-mount Remington integral for model 700 rifles'), ('30mm rings made by Nightforce'), ('30mm Scope mount'), 
+       ('34mm one piece magmount made by I-E-A Mil Optics'), ('34mm one piece magmount made by Nightforce'), 
+       ('34mm one piece magmount made by Nightforce with a Multimount rail'), ('Aimpoint LRP mount for COMP M4 sights'), ('Aimpoint Micro Spacer High'), 
+       ('Aimpoint mount for the sights of Micro series'), ('Armasight universal base'), ('Burris FastFire Weaver Base'), ('Compact mount for sights'), 
+       ('Cross Slot Mount base for Deltapoint scopes'), ('High profile mount for Trijicon RMR'), ('KMZ 1P59 Dovetail mount'), ('KMZ 1P69 Weaver mount'), 
+       ('Low profile mount for Trijicon RMR'), ('TA51 Mount for sights'), ('Trijicon RMR mount for ACOG scopes'), ('UNV DLOC-IRD Mount for sights');
 
 -- Magazine
 INSERT INTO magazines (magazine_name)
@@ -456,31 +462,97 @@ VALUES ('10.6" barrel for 416A5 and compatible 5.56x45'), ('10.5" 9x19 barrel fo
        ('Threaded barrel for M1911A1 .45 ACP'), ('171mm barrel for MCX and compatible .300 BLK'), ('229mm barrel for MCX and compatible .300 BLK'), 
        ('5" barrel for Vector 9x19'), ('6" barrel for Vector 9x19'), ('5" Vector barrel .45 ACP'), ('6" Vector barrel .45 ACP'), ('8" barrel for UMP .45 ACP'), 
        ('24" barrel for Mk-18 .338 LM'), ('Regular barrel for PL-15 9x19'), ('	Threaded barrel for PL-15'), ('10.5" barrel for STM-9 9x19'), ('12" barrel for STM-9 9x19'), 
-       ('14" barrel for STM-9 9x19'), ('16" barrel for STM-9 9x19');
+       ('14" barrel for STM-9 9x19'), ('16" barrel for STM-9 9x19'), ('VSS 9x39 integral barrel-suppressor'), ('AS VAL 9x39 integral barrel-suppressor');
 
 -- Muzzles
 INSERT INTO muzzles (muzzle_name, adaptor_required)
-VALUES ('1', true);
+VALUES ('Gemtech ONE 7.62x51 Sound Suppressor', true), ('AAC Illusion 9 9x19mm silencer', true), ('Sig SRD 9 9x19mm sound suppressor', true), 
+       ('Regular SV-98 7.62x54 silencer', true), ('Surefire SOCOM556-MONSTER 5.56x45 silencer', true), ('Surefire SOCOM556-MINI MONSTER 5.56x45 Silencer', true), 
+       ('B&T Rotex 2 4.6x30 silencer', true), ('Bramit silencer for a Mosin rifle', true), ('Hexagon 12K sound suppressor', true), ('PBS-4 5.45x39 Silencer', true), 
+       ('Hexagon AK-74 5.45x39 sound suppressor', true), ('Hexagon SKS 7.62x39 sound suppressor', true), ('Zenit DTK-4M muzzle brake', true), 
+       ('Hexagon AKM 7.62x39 sound suppressor', true), ('Rotor 43 9x19 muzzle brake', true), ('Rotor 43 7.62x39 muzzle brake', true), ('Rotor 43 .366TKM muzzle brake', true), 
+       ('Rotor 43 5.56x45 muzzle brake', true), ('Silencer APB 9x18PM', true), ('SilencerCo Salvo 12 sound suppressor', true), ('MP5SD 9x19 silencer', true), 
+       ('AAC 762 SDN-6 7.62x51 Sound Suppressor', true), ('SilencerCo Osprey 9 9x19mm sound suppressor', true), ('SR1MP silencer 9x21', true), 
+       ('Silencerco Hybrid 46 multi-caliber silencer', true), ('Vityaz 9x19 sound suppressing device', true), ('Makeshift 7.62x25 TT silencer', true), 
+       ('Fischer Development FD917 suppressor', true), ('Alpha Dog Alpha 9 9x19 sound suppressor', true), ('KAC QDSS NT-4 5.56x45 silencer', true), 
+       ('MPX-SD 9x19 Integrated silencer', true), ('PBS-1 7.62x39 silencer', true), ('Stock silencer for PB 9x18 PM', true), ('TGP-A 5.45x39 muzzle device/suppressor', true), 
+       ('PP-91-01 Kedr-B 9x18PM suppressor', true), ('ASh-12 12.7x55 tactical suppressor', true), ('FN Attenuator 5.7x28 silencer', true), 
+       ('Daniel Defence Wave QD Sound Suppressor', true), ('Gemtech SFN-57 5.7x28mm silencer', true), ('Thunder Beast Ultra 5 Sound Suppressor', true), 
+       ('KAC PRS QDC 7.62x51 Sound Suppressor', true), ('Rotor 43 7.62x54 muzzle brake', true), ('B&T MP9 9x19mm sound suppressor', true), 
+       ('Hexagon "DTKP MK.2" 7.62x39 sound suppressor', true), ('Surefire SOCOM556-RC2 5.56x45 silencer', true), ('Rotor 43 7.62x51 muzzle brake for VPO-101', true), 
+       ('Sig-Sauer "SRD" 7.62x51 Sound Suppressor', true), ('Sig-Sauer SRD QD 7.62x51 Sound Suppressor', true), ('SilencerCo Omega 45k .45 ACP sound suppresso', true), 
+       ('PL-15 9x19mm sound suppressor', true), ('Izhmash 7.62x39 AKM muzzle brake & compensator (6P1 0-14)', true), 
+       ('Molot 7.62x39 Vepr KM / VPO-136 muzzle brake & compensator', true), ('Thread protection for AKM/VPO-209', true), ('KAC QD Compensator 5.56x45', true), 
+       ('Izhmash 7.62x39 flash hider for AKML system', true), ('AAC Blackout 51T flash hider (7.62x51)', true), ('Carver Custom 4 Port 9x19 muzzle brake', true), 
+       ('Decelerator 3 Port 9x19 Compensator', true), ('Double Diamond flash hider', true), ('Alpha Wolf Bullnose 9x19 Compensator', true), 
+       ('Lone Wolf Compensator 9 9x19', true), ('Strike Industries G4 slide compensator 9x19', true), ('Lantac Dragon 7.62x39 muzzle brake & compensator for AK', true), 
+       ('SAI Jail Break 5.56x45 for AR-15', true), ('AAC Blackout 51T 5.56x45 flash-hider', true), ('Thread adapter 7.62x54 for SV-98', true), 
+       ('Surefire WarComp 5.56x45 Flash hider for AR-15', true), ('Lantac Dragon 7.62x51 muzzle brake', true), ('Izhmash 7.62x54 SVDS muzzlebrake & compensator', true), 
+       ('SRVV "Mk.2.0" compensator 7.62x54 for SV-98', true), ('Venom Antidote muzzle brake & compensator for AK', true), ('Surefire SF3P 5.56x45 Flash hider for AR-15', true), 
+       ('TJ Custom 9x19 Compensator', true), ('Desert Tech 5.56x45 Flash hider', true), ('HK Noveske style muzzle brake & compensator for MP-5', true), 
+       ('PM-Laser DTK-TT muzzle brake for TT pistol', true), ('Izhmash 5.45x39 RPK-16 muzzle brake & compensator', true), ('ADAR 2-15.56x45 Flashhider', true), 
+       ('Noveske KX3 5.56x45 flash hider', true), ('Muzzle brake Odin Works Atlas-7 7.62x51 for AR-10', true), ('Tacfire Tanker style muzzle brake for Mosin rifle', true), 
+       ('Witt Machine muzzle brake for Mosin rifle', true), ('HK A1 4.6x30 Flash hider for MP7', true), ('DS Arms "Austrian Style" 7.62x51 muzzle brake for SA-58', true), 
+       ('Compensator 2A "X3" 7.62x51 for AR-10', true), ('Annihilator 7.62x39, 5.56x45 and 9mm flash hider for AR-15', true), 
+       ('DS Arms "3 prong trident" 7.62x51 Flash hider for SA-58', true), ('Phantom 7.62x51 muzzle brake & compensator for M14', true), 
+       ('Vortex DC 7.62x51 muzzle brake & compensator for M14', true), ('National Match 7.62x51 muzzle brake & compensator for M1A', true), 
+       ('JP Enterprises tactical compensator 7.62x51 muzzle brake & compensator for M14', true), ('Good Iron 7.62x51 muzzle brake & compensator for M14', true), 
+       ('Izhmash 5.45x39 AK-74 muzzle brake & compensator (6P20 0-20)', true), ('Zenit DTK-1 7.62x39 & 5.45x39 muzzle brake & compensator for AK', true), 
+       ('Izhmash 5.45x39 muzzle brake for AKS-74U (6P26 0-20)', true), ('Colt USGI A2 5.56x45 Flash hider for AR-15', true), ('PWS CQB 5.56 x 45 Muzzle brake', true), 
+       ('A2 9x19 Flash hider for MPX', true), ('SV-98 muzzle device', true), ('Muzzle brake Vendetta precision VP-09 5.56x45', true), 
+       ('Izhmash 9x19 PP-19-01 muzzle brake/compensator', true), ('Izhmash 9x19 Saiga-9 muzzle brake/compensator', true), ('PWS CQB 74 5.45x39 Muzzle brake', true), 
+       ('DVL-10 M2 muzzle brake', true), ('DVL-10 muzzle device', true), ('Tromix Monster Claw 12ga muzzle brake', true), ('GK-02 Muzzle Brake', true), 
+       ('Remington Tactical Choke 12ga', true), ('Socom 16 7.62x51 muzzle brake & compensator for M1A (threaded)', true), 
+       ('Izhmash 5.56x45 AK-101 muzzlebrake & compensator', true), ('Izhmash 5.45x39 AK-74M muzzle brake & compensator (6P20 0-20)', true), 
+       ('Izhmash 5.45x39 AK-105 muzzlebrake & compensator (6P44 0-20)', true), ('Izhmash 7.62x39 AK-104 muzzlebrake & compensator (6P46 0-20)', true), 
+       ('Izhmash 7.62x39 AK-103 muzzlebrake & compensator', true), ('Izhmash 5.56x45 AK-102 muzzlebrake & compensator (6P44 0-20)', true), 
+       ('Socom 16 7.62x51 muzzle brake & compensator for M1A (unthreaded)', true), ('Spike tactical dynacomp 7.62x39 muzzle brake & compensator for AK', true), 
+       ('Texas Precision Products muzzle brake for Mosin rifle', true), ('Fortis Red Brake 7.62x51 muzzle brake for AR-10', true), ('ASh-12 regular muzzle brake 12.7x55', true),
+       ('FN P90 5.7x28 flash hider', true), ('SRVV 5.45x39 AK-74 muzzle brake', true), ('SRVV 7.62x39 AK muzzle brake & compensator', true), 
+       ('TROY Claymore 5.56x45 muzzle brake for AR-15', true), ('Muzzle brake Keeno Arms SHREWD 7.62x51 for AR-10', true), 
+       ('Muzzle brake Precision Armament M-11 7.62x51 for AR-10', true), ('Carbine brake for SIG MPX by TACCOM', true), ('Bulletec ST-6012 5.56x45 Flash hider for AR-15', true),
+       ('Lantac "Blast mitigation device" 7.62x51', true), ('Nordic Corvette 7.62x51 muzzle brake for AR-10', true), ('Nordic Corvette 5.56x45 compensator for AR-15', true), 
+       ('Daniel Defense Wave Muzzle Brake 5.56x45', true), ('Daniel Defense Wave Muzzle Brake 7.62x51', true), ('Thunder Beast 223CB Muzzle brake 5.56x45', true), 
+       ('Thunder Beast 30CB Muzzle Brake 7.62x51', true), ('KAC QDC Flash suppressor kit 7.62x51 flash hider', true), ('Orsis T-5000M muzzle brake', true), 
+       ('Desert Tech .308 Flash hider', true), ('Surefire FH556RC 5.56x45 Flash hider for AR-15', true), ('Anarchy Outdoors Muzzle Brake .45 ACP', true), 
+       ('Regular RFB 7.62x51 Flash hider', true), ('Ferfrans "CRD" 5.56x45', true), ('Ferfrans Muzzle Brake 5.56x45', true), 
+       ('JMAC RRD-4C 7.62x39 muzzle brake for AKM type thread', true), ('JMAC RRD-4C muzzle brake for AK-74 type thread', true), 
+       ('SilencerCo AC-858 ASR .338 LM Muzzle brake', true), ('3-prong SIG Flash hider 7.62x51', true), ('SIG micro brake muzzle brake 7.62x51', true), 
+       ('SIG Two Port brake muzzle brake 7.62x51', true), ('KRISS Vector 9x19 Flash hider', true), ('Kriss Vector .45 ACP Flash hider', true), ('STM-9 9x19 muzzle brake', true);
 
 -- Muzzle Adaptors
 INSERT INTO muzzle_adaptors (adaptor_name)
-VALUES (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), ('');
+VALUES ('Direct Thread Mount adapter for Gemtech ONE'), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), ('');
 
 -- Bolts
 INSERT INTO bolts (bolt_name)
-VALUES (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), ('');
+VALUES ('Geissele "SCH" charging handle for MPX'), ('ADAR 2-15 charging handle for AR-15'), ('HK Extended latch Charging Handle'), 
+       ('Badger Ordnance Tactical Charging Handle Latch'), ('Raptor charging handle for AR-15'), ('Colt AR-15 charging handle for AR-15'), ('MP5 Cocking Handle'), 
+       ('SIG double latch charging handle for MPX'), ('SIG single latch charging handle for MPX'), ('FN charge handle for P90'), ('K&M The Handler charge handle for P90'), 
+       ('MP5 Kurz Cocking Handle'), ('KAC Ambidextrous Charging Handle for AR-10'), ('B&T charging handle for MP9'), ('KAC Charging Handle for SR-25'), 
+       ('Geissele ACH charging handle for AR-15'), ('Avalanche Mod.2 charging handle for AR-15'), ('Sig-Sauer charging handle for MCX'), 
+       ('MASP Ambi battle charging handle for AR-15');
 
 -- Fore Grips
 INSERT INTO fore_grips (fore_grip_name)
-VALUES (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), ('');
+VALUES ('KAC Vertical pistol grip'), ('BCM MOD.3 Tactical grip'), ('SI "Cobra tactical" tactical grip'), ('Magpul M-LOK AFG Tactical grip'), ('Hera Arms CQR tactical grip'), 
+       ('Fortis Shift tactical grip'), ('Magpul AFG grip'), ('Magpul RVG grip'), ('SE-5 Express Grip'), ('Tango Down Stubby BGV-MK46K tactical grip'), 
+       ('Viking Tactical UVG Tactical grip'), ('Zenit RK-0 Foregrip'), ('Zenit RK-1 Foregrip'), ('Zenit RK-1 Foregrip on B-25U mount'), ('Zenit RK-2 Foregrip'), 
+       ('Zenit RK-4 Foregrip'), ('Zenit RK-5 Foregrip'), ('Zenit RK-6 Foregrip'), ('ASh-12 Vertical pistol grip'), ('RTM Pillau Tactical grip'), ('B&T MP9-N Vertical grip'), 
+       ('T-5000 Pad'), ('TD Aluminium skeletonized vertical grip'), ('MVF001 A3 Vertical Grip KeyMod black'), ('Sig Sauer Vertical Foregrip Keymod Black');
 
 -- Tacticals
 INSERT INTO tacticals (tactical_name)
-VALUES (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), ('');
+VALUES ('Armytek Predator Pro v3 XHP35 HI Flashlight'), ('Ultrafire WF-501B Flashlight'), ('Zenit Perst-3 tactical device'), ('Zenit 2IRS Klesch flashlight + laser designator'),
+       ('Zenit 2P Klesch flashlight + laser designator'), ('Zenit 2U Klesch tactical flashlight'), ('AN/PEQ-15 tactical device'), ('Glock Tactical GL21 flashlight with laser'),
+       ('Holosun LS321 Tactical device'), ('LA-5 tactical device'), ('LAS/TAC 2 tactical flashlight'), ('Surefire XC1 tactical flashlight'), ('X400 tactical flashlight'), 
+       ('NcSTAR Tactical blue laser LAM-Module'), ('AN/PEQ-2 tactical device'), ('Steiner Dbal PL tactical flashlight'), ('DLP "Tactical Precision" LAM Module for TT Pistol');
 
 -- Ammo Types
 INSERT INTO ammo_types (ammo_name)
-VALUES (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), (''), ('');
+VALUES ('7.62x25mm Tokarev'), ('9x18mm Makarov'), ('9x19mm Parabellum'), ('9x21mm Gyurza'), ('.45 ACP'), ('4.6x30mm HK'), ('5.7x28mm FN'), ('5.45x39mm'), ('5.56x45mm NATO'), 
+       ('.300 Blackout'), ('7.62x39mm'), ('7.62x51mm NATO'), ('7.62x54mmR'), ('.338 Lapua Magnum'), ('9x39mm'), ('.366 TKM'), ('12.7x55mm STs-130'), ('12x70mm'), ('20x70mm'), 
+       ('40x46 mm');
 
 
 --Stock Compatibility
